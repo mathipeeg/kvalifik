@@ -13,6 +13,8 @@ import { PostsComponent } from './posts/posts.component';
 import { EventsComponent } from './events/events.component';
 import { ChatsComponent } from './chats/chats.component';
 import { NeweditpostComponent } from './neweditpost/neweditpost.component';
+import {MatInputModule} from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { NeweditpostComponent } from './neweditpost/neweditpost.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, AppRoutingModule
+    MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, AppRoutingModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
