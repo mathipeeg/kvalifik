@@ -7,16 +7,20 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import {MatListModule} from '@angular/material/list';
+import { AppRoutingModule } from './app-routing.module';
+import { PostsComponent } from './posts/posts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent
+    SidenavComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatToolbarModule, MatIconModule
+    MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
