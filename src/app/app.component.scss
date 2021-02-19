@@ -1,0 +1,17 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.container {
+    display: flex;
+}
+
+.sidenav {
+    flex: 1;
+    border: 1px solid red;
+}
+
+.content {
+    flex: 4;
+    border: 1px solid red;
+}
