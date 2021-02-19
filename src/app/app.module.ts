@@ -10,12 +10,18 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import {MatListModule} from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { PostsComponent } from './posts/posts.component';
+import { EventsComponent } from './events/events.component';
+import { ChatsComponent } from './chats/chats.component';
+import { NeweditpostComponent } from './neweditpost/neweditpost.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
-    PostsComponent
+    PostsComponent,
+    EventsComponent,
+    ChatsComponent,
+    NeweditpostComponent
   ],
   imports: [
     BrowserModule,
