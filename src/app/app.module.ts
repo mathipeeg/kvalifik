@@ -14,6 +14,7 @@ import { EventsComponent } from './events/events.component';
 import { ChatsComponent } from './chats/chats.component';
 import { NeweditpostComponent } from './neweditpost/neweditpost.component';
 import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import {MatInputModule} from '@angular/material/input';
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, AppRoutingModule,
-    MatInputModule
+    MatInputModule, MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
