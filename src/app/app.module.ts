@@ -15,6 +15,7 @@ import { ChatsComponent } from './chats/chats.component';
 import { NeweditpostComponent } from './neweditpost/neweditpost.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
+import { PostComponent } from './post/post.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {MatCardModule} from '@angular/material/card';
     PostsComponent,
     EventsComponent,
     ChatsComponent,
-    NeweditpostComponent
+    NeweditpostComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
