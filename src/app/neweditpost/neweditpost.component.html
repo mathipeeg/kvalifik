@@ -1,6 +1,14 @@
-<p>neweditpost works!</p>
 
-<mat-form-field class="example-full-width">
+<form [formGroup]="postForm" (ngSubmit)="onSubmitPost()">
+  <mat-form-field class="example-full-width">
     <mat-label>Title</mat-label>
-    <input matInput placeholder="Title" value="{{selectedPost.title}}">
+    <input matInput placeholder="Title" formControlName="title">
   </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Text</mat-label>
+    <textarea matInput placeholder="Write your post" formControlName="text"></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary">Save</button>
+</form>

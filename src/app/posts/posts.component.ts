@@ -19,4 +19,5 @@ export class PostsComponent implements OnInit {
   editPost(id: any) {
     this.router.navigate(['neweditpost', {myId: id}])
   }
+  
 }

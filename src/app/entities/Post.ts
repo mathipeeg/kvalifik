@@ -4,11 +4,17 @@ import { User } from "./User";
 export class Post {
     id;
     createdDate: Date;
-    title: string;
+    private title: string;
     text: string;
     media?: string;
     collections: Collection[];
     comments: Comment[];
+    // constructor() {
+    //     this.title = '';
+    //     this.text = '';
+    // }
+    getTitle(){return this.title};
+    setTitle(title: string) {this.title = title};
 }
 
 export class Comment {
