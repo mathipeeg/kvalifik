@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { Post } from '../entities/Post';
 
@@ -14,7 +14,7 @@ export class NeweditpostComponent implements OnInit {
   public postForm: FormGroup;
 
   constructor(private route: ActivatedRoute, private tempDataService: DataService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     const id: string = this.route.snapshot.paramMap.get('myId');
@@ -36,11 +36,19 @@ export class NeweditpostComponent implements OnInit {
 
   onSubmitPost() {
     console.log(this.postForm);
-    this.selectedPost.createdDate = new Date();
-    this.selectedPost.id = Math.random(); // temporary until we connect to a backend.
+    
+    if (this.postForm.valid){
+      this.selectedPost = this.postForm.value;
+      
+      this.selectedPost.createdDate = new Date();
+      this.selectedPost.id = Math.random(); // temporary until we connect to a backend.
 
-    // Can you store this post object in the temp. data service 
-    // and then navigate to the posts component?
+      // Can you store this post object in the temp. data service 
+      // and then navigate to the posts component?
+      this.tempDataService.addPost(this.selectedPost);
+      this.router.navigate(['posts']);
+    }
+   
   }
 
 

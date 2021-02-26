@@ -4,7 +4,7 @@ import { User } from "./User";
 export class Post {
     id;
     createdDate: Date;
-    private title: string;
+    title: string;
     text: string;
     media?: string;
     collections: Collection[];

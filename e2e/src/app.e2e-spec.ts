@@ -13,6 +13,10 @@ describe('workspace-project App', () => {
     expect(await page.getTitleText()).toEqual('kvalifik app is running!');
   });
 
+  it('create new post', async() => {
+    // code here to test...
+  });
+
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);

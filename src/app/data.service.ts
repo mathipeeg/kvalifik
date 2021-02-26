@@ -21,6 +21,7 @@ export class DataService {
 
   public addPost(post: Post) {
     // do something to add a new post
+    this.posts.push(post);
   }
 
   public deletePost(id: any) {
