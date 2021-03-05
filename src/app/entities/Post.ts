@@ -13,8 +13,6 @@ export class Post {
     //     this.title = '';
     //     this.text = '';
     // }
-    getTitle(){return this.title};
-    setTitle(title: string) {this.title = title};
 }
 
 export class Comment {

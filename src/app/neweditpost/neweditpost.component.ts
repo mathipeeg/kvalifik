@@ -12,6 +12,7 @@ import { Post } from '../entities/Post';
 export class NeweditpostComponent implements OnInit {
   public selectedPost: Post;
   public postForm: FormGroup;
+  public headerTitle: String = 'Create New Post';
 
   constructor(private route: ActivatedRoute, private tempDataService: DataService,
     private fb: FormBuilder, private router: Router) { }
@@ -19,6 +20,9 @@ export class NeweditpostComponent implements OnInit {
   ngOnInit(): void {
     const id: string = this.route.snapshot.paramMap.get('myId');
     console.log(id);
+    if (id !== null) {
+      this.headerTitle = "Edit Post";
+    }
 
     
     this.selectedPost = this.tempDataService.getPosts().find(post => post.id === id);
@@ -29,7 +33,7 @@ export class NeweditpostComponent implements OnInit {
     
 
     this.postForm = this.fb.group({
-      title: [this.selectedPost.getTitle(), Validators.required],
+      title: [this.selectedPost.title, Validators.required],
       text: [this.selectedPost.text, Validators.required],
     });
   }
