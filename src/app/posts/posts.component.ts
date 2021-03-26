@@ -21,9 +21,10 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.ngRedux.select(state => state.posts).subscribe(res => {
       this.isHappy = res.isHappy;
+      this.tempData = res.posts;
     });
  
-    this.tempData = this.tempDataService.getPosts();
+    // this.tempData = this.tempDataService.getPosts();
   }
   setHappy(happy: boolean) : void {
     this.postActions.setType(happy);
