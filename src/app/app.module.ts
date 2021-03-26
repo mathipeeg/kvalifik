@@ -17,6 +17,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { PostComponent } from './post/post.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
+import { AppState } from './store/Store';
+
+import { rootReducer } from './store/store';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +36,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    NgReduxModule,
+    NgReduxRouterModule.forRoot(),
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, AppRoutingModule,
@@ -38,4 +46,14 @@ import { ReactiveFormsModule } from '@angular/forms';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private ngRedux: NgRedux<AppState>,
+    // private devTool: DevToolsExtension,
+    private ngReduxRouter: NgReduxRouter,) {
+   
+    this.ngRedux.configureStore(rootReducer, {});
+ 
+      ngReduxRouter.initialize(/* args */);   
+  }
+ 
+ }

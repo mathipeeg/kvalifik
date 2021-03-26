@@ -1,3 +1,13 @@
+Is Christian happy? {{isHappy}}
+
+<button mat-raised-button color="primary" (click)="setHappy(true)">
+    Happy
+</button>
+
+<button mat-raised-button color="primary" (click)="setHappy(false)">
+    Not happy anymore
+</button>
+
 <div class="flexHeader">
     <h3>Posts</h3>   
     <button mat-raised-button color="primary" routerLink="/neweditpost" id="newPostBtn">New Post</button>
