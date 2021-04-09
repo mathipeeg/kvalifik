@@ -17,7 +17,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { PostComponent } from './post/post.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { DevToolsExtension, NgRedux, NgReduxModule } from '@angular-redux/store';
 import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { AppState } from './store/Store';
 
@@ -48,10 +48,11 @@ import { rootReducer } from './store/store';
 })
 export class AppModule {
   constructor(private ngRedux: NgRedux<AppState>,
-    // private devTool: DevToolsExtension,
+    private devTool: DevToolsExtension,
     private ngReduxRouter: NgReduxRouter,) {
    
-    this.ngRedux.configureStore(rootReducer, {});
+    this.ngRedux.configureStore(rootReducer, {}, [],[ devTool.isEnabled() ? devTool.enhancer() : f => f]);
+//    this.ngRedux.configureStore(rootReducer, {});
  
       ngReduxRouter.initialize(/* args */);   
   }
