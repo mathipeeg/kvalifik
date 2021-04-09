@@ -27,8 +27,11 @@ export function postsReducer(state: PostState = INITIAL_STATE, action: any) {
         
     case PostActions.ADD_POST:
         // add the action.payload (post) to the array of posts, but without mutating the array.
-        return tassign(state, {posts: state.posts.concat(action.payload)});
-        // return tassign(state, {posts: [...state.posts, action.payload]});
+        // state.posts.push(action.payload);
+        // return state;
+
+        // return tassign(state, {posts: state.posts.concat(action.payload)});
+        return tassign(state, {posts: [...state.posts, action.payload]});
 
   case PostActions.SET_HAPPY:
     // action.payload = true/false
