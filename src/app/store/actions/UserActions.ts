@@ -11,6 +11,14 @@ export class UserActions {
     {} 
 
   static SIGNED_UP: string = 'SIGNED_UP'; 
+  static SAVE_SOMETHING: string = 'SAVE_SOMETHING'; 
+
+  saveSomething(something: string) {
+    this.authService.saveSomething(something).subscribe((res: any) => {
+      console.log(res);
+    });
+  }
+
 
   signup(username: string, password: string): void {
     this.authService.signup(username, password).subscribe((res: any) => {

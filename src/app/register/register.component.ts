@@ -25,6 +25,9 @@ export class RegisterComponent implements OnInit {
     )
   }
 
+  saveSomething() {
+    this.userActions.saveSomething('interesting');
+  }
 
 
   onSubmit(): void {
