@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import {MatListModule} from '@angular/material/list';
+import {MatListModule, MatSelectionList} from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { PostsComponent } from './posts/posts.component';
 import { EventsComponent } from './events/events.component';
@@ -22,6 +22,9 @@ import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { AppState } from './store/Store';
 
 import { rootReducer } from './store/store';
+import { LoginComponent } from './login/login.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -32,7 +35,9 @@ import { rootReducer } from './store/store';
     EventsComponent,
     ChatsComponent,
     NeweditpostComponent,
-    PostComponent
+    PostComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,7 @@ import { rootReducer } from './store/store';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, AppRoutingModule,
-    MatInputModule, MatCardModule
+    MatInputModule, MatCardModule, MatGridListModule, MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
