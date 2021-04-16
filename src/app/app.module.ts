@@ -25,6 +25,7 @@ import { rootReducer } from './store/store';
 import { LoginComponent } from './login/login.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { RegisterComponent } from './register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { RegisterComponent } from './register/register.component';
     NgReduxRouterModule.forRoot(),
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, AppRoutingModule,
     MatInputModule, MatCardModule, MatGridListModule, MatListModule
   ],
