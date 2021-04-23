@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserActions } from '../store/actions/UserActions';
 
 @Component({
   selector: 'app-login', // name of component
@@ -11,7 +12,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   // DI - Dependency injection
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, 
+    private userActions: UserActions) {
   }
 
   ngOnInit() {
@@ -32,7 +34,7 @@ export class LoginComponent implements OnInit {
       
       // Send the data to the server to verify the user login
       // navigate after successful login.
-
+      this.userActions.login(this.loginForm.value.username, this.loginForm.value.password);
 
 
     }

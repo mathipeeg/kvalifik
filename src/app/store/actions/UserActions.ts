@@ -11,14 +11,39 @@ export class UserActions {
     {} 
 
   static SIGNED_UP: string = 'SIGNED_UP'; 
+  static LOGGED_IN: string = 'LOGGED_IN'; 
   static SAVE_SOMETHING: string = 'SAVE_SOMETHING'; 
 
-  saveSomething(something: string) {
-    this.authService.saveSomething(something).subscribe((res: any) => {
-      console.log(res);
-    });
-  }
+  // saveSomething(something: string) {
+  //   this.authService.saveSomething(something).subscribe((res: any) => {
+  //     console.log(res);
+  //   });
+  // }
 
+  login(username: string, password: string) : void {
+      this.authService.login(username, password).subscribe((result: any) => {
+        console.log("response from server");
+        console.log(result);
+        
+        const user: User = { 
+          id: result.localId, 
+          username, email: username, 
+          signupDate: undefined
+        } as User;
+
+        this.authService.getUserInfo(result.idToken).subscribe((response : any) => {
+          console.log("getUserInfo");
+          console.log(response);
+          
+          user.signupDate = new Date(Number(response.users[0].createdAt));
+
+          this.ngRedux.dispatch({
+            type: UserActions.LOGGED_IN,
+            payload: {user, token: result.idToken}
+          });
+        })
+      });
+  }
 
   signup(username: string, password: string): void {
     this.authService.signup(username, password).subscribe((res: any) => {

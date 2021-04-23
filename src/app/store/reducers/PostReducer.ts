@@ -15,6 +15,9 @@ const INITIAL_STATE: PostState = {isHappy: true, posts: posts};
 
 export function postsReducer(state: PostState = INITIAL_STATE, action: any) {
  switch (action.type) {
+    case PostActions.READ_POSTS:
+        return tassign(state, {posts: action.payload});
+
     case PostActions.UPDATE_POST:
         // [{id:'1',...},{2},{3},{4},{5}]
         // [{1},{2},{3new},{4},{5}]

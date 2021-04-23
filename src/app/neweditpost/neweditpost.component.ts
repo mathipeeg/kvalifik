@@ -59,7 +59,7 @@ export class NeweditpostComponent implements OnInit {
       if (!this.editMode) {
         this.selectedPost = this.postForm.value;
         this.selectedPost.createdDate = new Date();
-        this.selectedPost.id = ""+Math.random(); // temporary until we connect to a backend.
+        // this.selectedPost.id = ""+Math.random(); // temporary until we connect to a backend.
   
         // console.log(this.selectedPost);
         

@@ -27,7 +27,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 
-
 @NgModule({
   declarations: [
     AppComponent,
