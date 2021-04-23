@@ -16,7 +16,7 @@ import { NeweditpostComponent } from './neweditpost/neweditpost.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { PostComponent } from './post/post.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DevToolsExtension, NgRedux, NgReduxModule } from '@angular-redux/store';
 import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { AppState } from './store/Store';
@@ -26,6 +26,7 @@ import { LoginComponent } from './login/login.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PostsPipe } from './posts.pipe';
 
 @NgModule({
   declarations: [
@@ -37,10 +38,12 @@ import { HttpClientModule } from '@angular/common/http';
     NeweditpostComponent,
     PostComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PostsPipe
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     NgReduxModule,
     NgReduxRouterModule.forRoot(),
     BrowserAnimationsModule,

@@ -14,6 +14,8 @@ import { AppState } from '../store/Store';
 export class PostsComponent implements OnInit {
   public posts: Post[];
   public isHappy: boolean;
+  birthday = new Date(1988, 3, 15);
+  public search: string = '';
   
   constructor(private router: Router, private tempDataService: DataService,
     private ngRedux: NgRedux<AppState>, private postActions: PostActions) { }
