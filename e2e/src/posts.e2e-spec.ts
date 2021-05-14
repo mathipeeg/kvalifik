@@ -4,7 +4,7 @@ import { AppPage } from "./app.po";
 describe('Posts section', () => {
     let helper: AppPage;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         helper = new AppPage();
 
         await browser.waitForAngularEnabled(false);
@@ -13,20 +13,20 @@ describe('Posts section', () => {
 
     it('Navigate to the edit post page', async() => {
         // code here to test...
-        
-        await element(by.css(".e2e-posts")).click();
-        
-        await element.all(by.css(".e2e-edit")).first().click();
-        
-        expect(await element(by.css("h3")).getText()).toEqual("Edit Post");
+
+        await element(by.css('.e2e-posts')).click();
+
+        await element.all(by.css('.e2e-edit')).first().click();
+
+        expect(await element(by.css('h3')).getText()).toEqual("Edit Post");
     });
 
     it('Navigate to the new post page', async() => {
         // code here to test...
         await element(by.css(".e2e-posts")).click();
-        
+
         await element(by.id('newPostBtn')).click();
-        
+
         expect(await element(by.css("h3")).getText()).toEqual("Create New Post");
     });
 
@@ -48,8 +48,8 @@ describe('Posts section', () => {
         // instead of hardcoding numbers, like 5 and 6.
         // expect(postsBeforeAdding.length).toEqual(1);
 
-     
-        
+
+
 
     });
-});
+})
