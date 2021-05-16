@@ -1,12 +1,10 @@
 import { routerReducer } from '@angular-redux/router';
-import { combineReducers } from 'redux';
-import { Post } from '../entities/Post';
-import { User } from '../entities/User';
+import {Action, combineReducers} from 'redux';
 import { postsReducer } from './reducers/PostReducer';
 import { usersReducer } from './reducers/UserReducer';
+import {Post, User} from '../models';
 
 export class PostState {
-    isHappy: boolean;
     posts: Post[];
 }
 

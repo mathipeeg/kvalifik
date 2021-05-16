@@ -1,6 +1,6 @@
 import { EventEmitter, Output } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
-import { Post } from '../entities/Post';
+import {Post} from '../models';
 
 @Component({
   selector: 'app-post',
@@ -15,7 +15,7 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   editPost(id: string): void {
     this.postClicked.emit(id);
   }

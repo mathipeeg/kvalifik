@@ -1,27 +1,40 @@
-Is Christian happy? {{isHappy}}
-{{birthday | date:'dd/MM/yyyy'}}
-
-<button mat-raised-button color="primary" (click)="setHappy(true)">
-    Happy
-</button>
-
-<button mat-raised-button color="primary" (click)="setHappy(false)">
-    Not happy anymore
-</button>
-
-<div class="flexHeader">
-    <h3>Posts</h3>   
-    <button mat-raised-button color="primary" routerLink="/neweditpost" id="newPostBtn">New Post</button>
+<div class="new-post">
+  <button mat-raised-button routerLink="/managepost">New post</button>
 </div>
 
-<div class="flexGrid"> 
-    <mat-form-field>
-        <input matInput type="text" [(ngModel)]="search" placeholder="Search a post" />
-    </mat-form-field>
-    <mat-card class="example-card" *ngFor="let mypost of posts | filterPosts: search"> 
-       <app-post [post]="mypost" (postClicked)="editPost($event)"></app-post>
-    </mat-card>
-</div>
+<table *ngIf="posts" mat-table [dataSource]="posts" class="mat-elevation-z8">
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title </th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
 
+  <ng-container matColumnDef="created">
+    <th mat-header-cell *matHeaderCellDef> Created </th>
+    <td mat-cell *matCellDef="let element"> {{element.createdDate | date}} </td>
+  </ng-container>
 
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef> Type </th>
+    <td mat-cell *matCellDef="let element"> {{element.media}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="activity">
+    <th mat-header-cell *matHeaderCellDef> Activity </th>
+<!--    <td mat-cell *matCellDef="let element"> <div *ngIf="element.comments">{{element.likes}} {{element.comments.length}}</div></td>-->
+    <td mat-cell *matCellDef="let element"> {{element.likes}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element"> <button (click)="editPost(element.id)" mat-raised-button>Edit</button> </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
 

@@ -9,7 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import {MatListModule, MatSelectionList} from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
-import { PostsComponent } from './posts/posts.component';
+import { Posts_oldComponent } from './posts_old/posts_old.component';
 import { EventsComponent } from './events/events.component';
 import { ChatsComponent } from './chats/chats.component';
 import { NeweditpostComponent } from './neweditpost/neweditpost.component';
@@ -20,26 +20,34 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DevToolsExtension, NgRedux, NgReduxModule } from '@angular-redux/store';
 import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { AppState } from './store/Store';
-
 import { rootReducer } from './store/store';
 import { LoginComponent } from './login/login.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PostsPipe } from './posts.pipe';
+import { PostsComponent } from './posts/posts.component';
+import { MatTableModule } from '@angular/material/table';
+import { ManagePostComponent } from './manage-post/manage-post.component'
+import {MatSelectModule} from '@angular/material/select';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
-    PostsComponent,
+    Posts_oldComponent,
     EventsComponent,
     ChatsComponent,
     NeweditpostComponent,
     PostComponent,
     LoginComponent,
     RegisterComponent,
-    PostsPipe
+    PostsPipe,
+    PostsComponent,
+    ManagePostComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +58,8 @@ import { PostsPipe } from './posts.pipe';
     ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, AppRoutingModule,
-    MatInputModule, MatCardModule, MatGridListModule, MatListModule
+    MatInputModule, MatCardModule, MatGridListModule, MatListModule, MatTableModule, MatSelectModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -59,11 +68,11 @@ export class AppModule {
   constructor(private ngRedux: NgRedux<AppState>,
     private devTool: DevToolsExtension,
     private ngReduxRouter: NgReduxRouter,) {
-   
+
     this.ngRedux.configureStore(rootReducer, {}, [],[ devTool.isEnabled() ? devTool.enhancer() : f => f]);
 //    this.ngRedux.configureStore(rootReducer, {});
- 
-      ngReduxRouter.initialize(/* args */);   
+
+      ngReduxRouter.initialize(/* args */);
   }
- 
+
  }

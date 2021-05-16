@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
   // DI - Dependency injection
-  constructor(private fb: FormBuilder, private router: Router, 
+  constructor(private fb: FormBuilder, private router: Router,
     private userActions: UserActions) {
   }
 
@@ -35,12 +35,8 @@ export class RegisterComponent implements OnInit {
 
     if (this.registerForm.valid) {
       this.userActions.signup(this.registerForm.value.username, this.registerForm.value.password);
-      
       // Send the data to the server to verify the user login
       // navigate after successful login.
-
-
-
     }
 
   }

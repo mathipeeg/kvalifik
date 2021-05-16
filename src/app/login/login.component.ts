@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserActions } from '../store/actions/UserActions';
+import {Observable, Subject} from 'rxjs';
+import {CommentUser, User} from '../models';
+import {map, startWith, switchMap, takeUntil, withLatestFrom} from 'rxjs/operators';
+import {AuthService} from '../auth.service';
+import {NgRedux} from '@angular-redux/store';
+import {AppState} from '../store/Store';
 
 @Component({
   selector: 'app-login', // name of component
@@ -10,10 +16,12 @@ import { UserActions } from '../store/actions/UserActions';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  user: User;
 
-  // DI - Dependency injection
-  constructor(private fb: FormBuilder, private router: Router, 
-    private userActions: UserActions) {
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private userActions: UserActions,
+              private ngRedux: NgRedux<AppState>) {
   }
 
   ngOnInit() {
@@ -23,21 +31,24 @@ export class LoginComponent implements OnInit {
         password: ['', Validators.required] // Single validator
       }
     )
+
+
   }
 
-
-
   onSubmit(): void {
-    console.log(this.loginForm);
-
     if (this.loginForm.valid) {
-      
-      // Send the data to the server to verify the user login
-      // navigate after successful login.
       this.userActions.login(this.loginForm.value.username, this.loginForm.value.password);
-
-
+      this.router.navigate(['/posts']); // todo: dashboard
+      // let test = ;
     }
-
+    // this.ngRedux.select(state => state.users).subscribe(res => {
+    //   this.user = res.loggedInUser;
+    //   console.log(this.user);
+    //   // console.log(this.posts);
+    // });
+    // console.log(this.userActions.test() + '<<-');
+    // if(this.userActions.logged) {
+    //   console.log('YOURE IN');
+    // }
   }
 }

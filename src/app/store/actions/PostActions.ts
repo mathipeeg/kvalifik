@@ -1,33 +1,36 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
-import { AppState } from './../Store';
-import { Post } from 'src/app/entities/Post';
+import { AppState } from '../Store';
 import { PostsService } from 'src/app/posts.service';
+import {Post} from '../../models';
 
 @Injectable({ providedIn: 'root'})
 export class PostActions {
 
-    constructor (private ngRedux: NgRedux<AppState>, private postService: PostsService)
-    {}
+  constructor(private ngRedux: NgRedux<AppState>, private postService: PostsService)
+  {}
 
-  static SET_HAPPY: string = 'SET_HAPPY';
+  static DELETE_POST: string = 'DELETE_POST';
   static ADD_POST: string = 'ADD_POST';
   static UPDATE_POST: string = 'UPDATE_POST';
   static READ_POSTS: string = 'READ_POSTS';
 
-
-  readPosts() {
+  readPosts(): void {
     this.postService.readPosts().subscribe((result: any) => {
-      console.log("result from server");
-      console.log(result);
 
-      let posts: Post[] = [];
-      for(let id in result) {
-        let postObj = result[id];
+      const posts: Post[] = [];
+      // console.log(result);
+      for (const id in result) {
+        // console.log(id);
+        // if (id === 'id') {
+        let postObj = {} as Post;
+        // console.log(result[id]);
+        postObj = result[id];
         postObj.id = id;
-        
         posts.push(postObj as Post);
+        // }
       }
+      // console.log(posts);
 
       this.ngRedux.dispatch({
         type: PostActions.READ_POSTS,
@@ -36,20 +39,12 @@ export class PostActions {
     });
   }
 
-
-  setType(isHappy: boolean): void {
-
-    this.ngRedux.dispatch({
-        type: PostActions.SET_HAPPY,
-        payload: isHappy
-    });
-  }
-
-  addPost(newPost: Post) : void {
+  addPost(newPost: Post): void {
+    console.log(newPost);
 
     this.postService.savePost(newPost).subscribe((result: any) => {
-      console.log("result from saving");
-      console.log(result);
+      // console.log("result from saving");
+      // console.log(result);
 
       newPost.id = result.name;
 
@@ -58,14 +53,24 @@ export class PostActions {
         payload: newPost
       });
     });
-
-
   }
+
   updatePost(updatedPost: Post) : void {
     this.ngRedux.dispatch({
         type: PostActions.UPDATE_POST,
         payload: updatedPost
     });
+    this.postService.updatePost(updatedPost).subscribe(post => {
+      console.log(post);
+    })
+  }
+
+  deletePost(post: Post) {
+    this.ngRedux.dispatch({
+      type: PostActions.DELETE_POST,
+      payload: post
+    });
+    this.postService.deletePost(post);
   }
 
 }

@@ -1,0 +1,84 @@
+<div *ngIf="user"> <!--for old users editing their account-->
+  <h1>LOGGED IN</h1>
+</div>
+
+<div *ngIf="!user"> <!--for new users creating their account-->
+  <h1>NOT LOGGED</h1>
+</div>
+
+<h1>{{title}}</h1>
+<button mat-raised-button (click)="back()">Back</button>
+<!--<div *ngIf="loaded">-->
+<!--<form [formGroup]="postForm">-->
+<!--  <div class="field-div">-->
+<!--    <mat-label>Title</mat-label>-->
+<!--    <input matInput id="titleInput" placeholder="Title" formControlName="title">-->
+<!--  </div>-->
+<!--  <h1>{{selectedPost.title}}</h1>-->
+<!--  <div class="field-div">-->
+<!--    <mat-label>Text</mat-label>-->
+<!--    <textarea *ngIf="selectedPost" matInput id="textInput" [placeholder]="selectedPost.text" formControlName="text"></textarea>-->
+<!--  </div>-->
+
+<!--  <div class="field-div">-->
+<!--    <mat-label>Add media</mat-label>-->
+<!--    <button mat-raised-button id="mediaInput">Add new media</button>-->
+<!--    <textarea formControlName="media">URL TBC</textarea>-->
+<!--  </div>-->
+
+<!--  <div class="field-div">-->
+<!--    <mat-label>Collection</mat-label>-->
+<!--    <mat-select formControlName="collections">-->
+<!--      <mat-option *ngFor="let collection of tempCollections" [value]="collection">-->
+<!--        {{collection}}-->
+<!--      </mat-option>-->
+<!--    </mat-select>-->
+<!--  </div>-->
+
+<!--  <div class="field-div">-->
+<!--    <mat-label>Pinned</mat-label>-->
+<!--    <mat-slide-toggle  formControlName="pinned"></mat-slide-toggle>-->
+<!--  </div>-->
+
+<!--  <div *ngIf="!editMode" class="field-div">-->
+<!--    <mat-label>Responsible</mat-label>-->
+<!--    <mat-select formControlName="responsible">-->
+<!--      <mat-option *ngFor="let volunteers of tempArray" [value]="volunteers">-->
+<!--        {{volunteers}}-->
+<!--      </mat-option>-->
+<!--    </mat-select>-->
+<!--  </div>-->
+
+<!--  <div *ngIf="!editMode" class="field-div">-->
+<!--    <mat-label>Collaboration</mat-label>-->
+<!--    <mat-select formControlName="collaboration">-->
+<!--      <mat-option *ngFor="let collab of tempArray" [value]="collab">-->
+<!--        {{collab}}-->
+<!--      </mat-option>-->
+<!--    </mat-select>-->
+<!--  </div>-->
+
+<!--  <button mat-raised-button (click)="onSubmitPost('DRAFT')">Save draft</button>-->
+<!--  <button type="button" mat-raised-button id="savePost" color="primary" (click)="onSubmitPost('PUBLISHED')">Publish post / save changes</button>-->
+<!--  <button *ngIf="!editMode" mat-raised-button>Delete post</button>-->
+
+<!--  <div class="comments">-->
+<!--    <div *ngFor="let comment of tempComments">-->
+<!--      {{comment}}-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</form>-->
+<!--</div>-->
+
+<!--export class Post {-->
+<!--id;-->
+<!--createdDate: Date;-->
+<!--title: string;-->
+<!--text: string;-->
+<!--media?: string;-->
+<!--collections: Collection[];-->
+<!--comments: Comment[];-->
+<!--pinned: boolean;-->
+<!--state: string;-->
+<!--likes: number;-->
+<!--}-->

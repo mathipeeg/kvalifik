@@ -1,10 +1,11 @@
-import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { DataService } from '../data.service';
-import { Post } from '../entities/Post';
-import { PostActions } from '../store/actions/PostActions';
-import { AppState } from '../store/Store';
+import {Router} from '@angular/router';
+import {DataService} from '../data.service';
+import {NgRedux} from '@angular-redux/store';
+import {AppState} from '../store/Store';
+import {PostActions} from '../store/actions/PostActions';
+import {Post} from '../models';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-posts',
@@ -12,29 +13,29 @@ import { AppState } from '../store/Store';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
-  public posts: Post[];
-  public isHappy: boolean;
-  birthday = new Date(1988, 3, 15);
-  public search: string = '';
-  
+
+  public posts: Post[] = [];
+
+  displayedColumns: string[] = ['title', 'created', 'type', 'activity', 'status', 'edit'];
+  // public isHappy: boolean;
+  // birthday = new Date(1988, 3, 15);
+  search: string = '';
+
   constructor(private router: Router, private tempDataService: DataService,
-    private ngRedux: NgRedux<AppState>, private postActions: PostActions) { }
+              private ngRedux: NgRedux<AppState>, private postActions: PostActions) { }
 
   ngOnInit(): void {
     this.postActions.readPosts();
 
     this.ngRedux.select(state => state.posts).subscribe(res => {
-      this.isHappy = res.isHappy;
       this.posts = res.posts;
+      // console.log(this.posts);
     });
- 
     // this.tempData = this.tempDataService.getPosts();
   }
-  setHappy(happy: boolean) : void {
-    this.postActions.setType(happy);
-  }
+
   editPost(id: any) {
-    this.router.navigate(['neweditpost', {myId: id}])
+    // console.log(id);
+    this.router.navigate(['/managepost', {myId: id}])
   }
-  
 }

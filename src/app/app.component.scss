@@ -1,9 +1,8 @@
-.example-spacer {
-    flex: 1 1 auto;
-}
+$headerheight: 4em;
 
 .container {
     display: flex;
+    height: calc(100vh - #{$headerheight});
 }
 
 .sidenav {
@@ -14,4 +13,13 @@
 .content {
     flex: 4;
     border: 1px solid red;
+}
+
+.header {
+  height: $headerheight;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
 }
