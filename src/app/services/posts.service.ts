@@ -41,9 +41,14 @@ export class PostsService extends ApiService {
     return this.http.get(url, this.getHttpOptions());
   }
 
+  getPostById(id: string): Observable<any> {
+    const url = 'https://kvalifik-ccc4d-default-rtdb.europe-west1.firebasedatabase.app/posts/' + id + '.json';
+
+    return this.http.get(url, this.getHttpOptions());
+  }
+
   deletePost(post: Post): Observable<any> {
     const token = this.ngRedux.getState().users.token;
-    console.log(post.id);
     const url = 'https://kvalifik-ccc4d-default-rtdb.europe-west1.firebasedatabase.app/posts/' + post.id + '.json';
 
     return this.http.delete(url, this.getHttpOptions()).pipe(catchError(this.handleError(`post ${url}`, undefined)));

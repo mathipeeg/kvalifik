@@ -1,3 +1,5 @@
+import {CommentTriviaType} from '@angular/compiler-cli/src/ngtsc/typecheck/src/comments';
+
 export class Collection {
   id;
   title: string;
@@ -37,7 +39,7 @@ export class Collaboration {
   title: string;
   description: string;
   date: Date;
-  accepted: boolean;
+  members: string[];
 }
 
 export class Post {
@@ -47,7 +49,7 @@ export class Post {
   text: string;
   media?: string;
   collections: string[];
-  comments: string[];
+  comments: Comment[];
   pinned: boolean;
   state: string; // Todo: look into enums
   likes: number;
@@ -71,6 +73,7 @@ export class StudyProgramme {
 
 export class Comment {
   id;
+  manualId: string;
   authorId: string;
   author?: CommentUser;
   createdDate: Date;

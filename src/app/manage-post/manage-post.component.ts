@@ -30,6 +30,16 @@ export class ManagePostComponent implements OnInit {
   volunteers: Volunteer[] = [];
   collaborations: Collaboration[] = [];
 
+  emptyComment = {
+    id: 0,
+    authorId: '0',
+    author: null,
+    createdDate: new Date(),
+    text: ' ',
+    likes: 0,
+    manualId: '0'
+  }
+
   constructor(private route: ActivatedRoute,
               private tempDataService: DataService,
               private fb: FormBuilder,
@@ -66,16 +76,11 @@ export class ManagePostComponent implements OnInit {
     this.ngRedux.select(state => state.posts).subscribe(res => {
       this.selectedPost = res.posts.find(post => post.id === id);
     });
+
     if(this.editMode) {
       this.commentActions.readComments();
       this.ngRedux.select(state => state.comments).subscribe(res => { // holder øje med state af posts og får dem fra select()
-        if (this.selectedPost) {
-          for (const i of res.comments) {
-            if (this.selectedPost.comments.includes(i.id)) {
-              this.comments.push(i);
-            }
-          }
-        }
+        this.comments = res.comments;
       });
     }
     // for (const i in this.selectedPost.comments) {
@@ -104,15 +109,8 @@ export class ManagePostComponent implements OnInit {
       this.selectedPost = this.postForm.value;
       this.selectedPost.createdDate = new Date();
       this.selectedPost.likes = 0;
-      this.selectedPost.comments = ['empty'];
-      this.selectedPost.media = 'test';
-      this.selectedPost.pinned = this.postForm.value.pinned;
-      this.selectedPost.responsible = ['empty'];
-      this.selectedPost.collaboration = 'test';
-      this.selectedPost.collections = ['empty'];
+      this.selectedPost.comments = [this.emptyComment];
       this.selectedPost.state = state;
-
-      // console.log(this.selectedPost);
       this.postActions.addPost(this.selectedPost);
     } else {
       const edits = ['title', 'text', 'media', 'collections', 'pinned'];
@@ -120,13 +118,6 @@ export class ManagePostComponent implements OnInit {
         this.selectedPost[edit] = this.postForm.value[edit];
       }
       this.selectedPost.state = state;
-      // volunteer
-      // date
-      // activity
-
-      // this.selectedPost.state = state;
-      // this.selectedPost.title = this.postForm.value.title;
-      // this.selectedPost.text = this.postForm.value.text;
       this.postActions.updatePost(this.selectedPost);
     }
     this.router.navigate(['/posts']);

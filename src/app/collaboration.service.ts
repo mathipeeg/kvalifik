@@ -18,4 +18,9 @@ export class CollaborationService extends ApiService {
     const url = 'https://kvalifik-ccc4d-default-rtdb.europe-west1.firebasedatabase.app/collaborations.json';
     return this.http.get(url, this.getHttpOptions());
   }
+
+  getCollabById(id: string): Observable<any> {
+    const url = 'https://kvalifik-ccc4d-default-rtdb.europe-west1.firebasedatabase.app/collaborations/' + id + '.json';
+    return this.http.get(url, this.getHttpOptions());
+  }
 }

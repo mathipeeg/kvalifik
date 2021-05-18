@@ -26,7 +26,7 @@ export class CollectionActions {
         collObj.id = id;
         collections.push(collObj as Collection);
       }
-      console.log(collections);
+      // console.log(collections);
 
       this.ngRedux.dispatch({
         type: CollectionActions.READ_COLL,

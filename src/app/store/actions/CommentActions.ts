@@ -27,7 +27,7 @@ export class CommentActions {
         commentObj.id = id;
         comments.push(commentObj as Comment);
       }
-      console.log(comments);
+      // console.log(comments);
 
       this.ngRedux.dispatch({
         type: CommentActions.READ_COMMENT,
@@ -36,41 +36,37 @@ export class CommentActions {
     });
   }
 
-  // addPost(newPost: Post): void {
-  //   console.log(newPost);
-  //
-  //   this.postService.savePost(newPost).subscribe((result: any) => {
-  //     // console.log("result from saving");
-  //     // console.log(result);
-  //
-  //     newPost.id = result.name;
-  //
-  //     this.ngRedux.dispatch({
-  //       type: PostActions.ADD_POST,
-  //       payload: newPost
-  //     });
-  //   });
-  // }
-  //
-  // updatePost(updatedPost: Post) : void {
-  //   this.ngRedux.dispatch({
-  //       type: PostActions.UPDATE_POST,
-  //       payload: updatedPost
-  //   });
-  //   this.postService.updatePost(updatedPost).subscribe(post => {
-  //     console.log(post);
-  //   })
-  // }
-  //
-  // deletePost(post: Post) {
-  //   this.ngRedux.dispatch({
-  //     type: PostActions.DELETE_POST,
-  //     payload: post
-  //   });
-  //
-  //   this.postService.deletePost(post).subscribe(res => {
-  //     console.log('Post deleted');
-  //   });
-  // }
+  addComment(newComment: Comment): void {
+    this.commentsService.saveComment(newComment).subscribe((result: any) => {
+
+      newComment.id = result.name;
+
+      this.ngRedux.dispatch({
+        type: CommentActions.ADD_COMMENT,
+        payload: newComment
+      });
+    });
+  }
+
+  updateComment(updatedComment: Comment) : void {
+    this.ngRedux.dispatch({
+        type: CommentActions.UPDATE_COMMENT,
+        payload: updatedComment
+    });
+    this.commentsService.updateComment(updatedComment).subscribe(comment => {
+      console.log('Updated');
+    })
+  }
+
+  deleteComment(comment: Comment) {
+    this.ngRedux.dispatch({
+      type: CommentActions.DELETE_COMMENT,
+      payload: comment
+    });
+
+    this.commentsService.deleteComment(comment).subscribe(res => {
+      console.log('Comment deleted');
+    });
+  }
 
 }

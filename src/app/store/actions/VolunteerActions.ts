@@ -29,7 +29,7 @@ export class VolunteerActions {
         volunteerObj.id = id;
         volunteers.push(volunteerObj as Volunteer);
       }
-      console.log(volunteers);
+      // console.log(volunteers);
 
       this.ngRedux.dispatch({
         type: VolunteerActions.READ_VOLUNTEER,

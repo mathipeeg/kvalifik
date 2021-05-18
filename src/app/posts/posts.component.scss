@@ -1,3 +1,15 @@
 table {
   width: 100%;
 }
+
+.draft {
+  background-color: #ffa500;
+}
+
+.published {
+  background-color: palegreen;
+}
+
+.cdk-column-title:hover {
+  cursor: pointer;
+}

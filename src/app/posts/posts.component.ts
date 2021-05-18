@@ -6,6 +6,10 @@ import {AppState} from '../store/Store';
 import {PostActions} from '../store/actions/PostActions';
 import {Post} from '../models';
 import { MatTableModule } from '@angular/material/table';
+import {CollectionActions} from '../store/actions/CollectionActions';
+import {VolunteerActions} from '../store/actions/VolunteerActions';
+import {CollaborationService} from '../collaboration.service';
+import {CollaborationActions} from '../store/actions/CollaborationActions';
 
 @Component({
   selector: 'app-posts',
@@ -21,11 +25,17 @@ export class PostsComponent implements OnInit {
   // birthday = new Date(1988, 3, 15);
   search: string = '';
 
-  constructor(private router: Router, private tempDataService: DataService,
-              private ngRedux: NgRedux<AppState>, private postActions: PostActions) { }
+  constructor(private router: Router,
+              private tempDataService: DataService,
+              private ngRedux: NgRedux<AppState>,
+              private postActions: PostActions,
+              private collectionActions: CollectionActions,
+              private volunteerActions: VolunteerActions,
+              private collabActions: CollaborationActions) { }
 
   ngOnInit(): void {
     this.postActions.readPosts();
+
 
     this.ngRedux.select(state => state.posts).subscribe(res => { // holder øje med state af posts og får dem fra select()
       this.posts = res.posts;
@@ -37,5 +47,10 @@ export class PostsComponent implements OnInit {
   editPost(id: any) {
     // console.log(id);
     this.router.navigate(['/managepost', {myId: id}])
+  }
+
+  openPost(id: any) {
+    // console.log(id);
+    this.router.navigate(['/post', {postId: id}])
   }
 }
