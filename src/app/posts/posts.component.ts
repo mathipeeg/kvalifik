@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {DataService} from '../data.service';
+import {DataService} from '../services/data.service';
 import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../store/Store';
 import {PostActions} from '../store/actions/PostActions';
@@ -27,7 +27,7 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.postActions.readPosts();
 
-    this.ngRedux.select(state => state.posts).subscribe(res => {
+    this.ngRedux.select(state => state.posts).subscribe(res => { // holder øje med state af posts og får dem fra select()
       this.posts = res.posts;
       // console.log(this.posts);
     });

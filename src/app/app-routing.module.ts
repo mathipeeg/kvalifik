@@ -9,11 +9,17 @@ import { RegisterComponent } from './register/register.component';
 import {PostsComponent} from './posts/posts.component';
 import {ManagePostComponent} from './manage-post/manage-post.component';
 import {ProfileComponent} from './profile/profile.component';
+import {VolunteersComponent} from './volunteers/volunteers.component';
+import {CollectionsComponent} from './collections/collections.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'posts', component: PostsComponent },
   { path: 'events', component: EventsComponent },
   { path: 'chats', component: ChatsComponent },
+  { path: 'volunteers', component: VolunteersComponent },
+  { path: 'collections', component: CollectionsComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'managepost', component: ManagePostComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },

@@ -32,6 +32,10 @@ import { ManagePostComponent } from './manage-post/manage-post.component'
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ProfileComponent } from './profile/profile.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CollectionsComponent } from './collections/collections.component';
+import { VolunteersComponent } from './volunteers/volunteers.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,10 @@ import { ProfileComponent } from './profile/profile.component';
     PostsPipe,
     PostsComponent,
     ManagePostComponent,
-    ProfileComponent
+    ProfileComponent,
+    DashboardComponent,
+    CollectionsComponent,
+    VolunteersComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +66,7 @@ import { ProfileComponent } from './profile/profile.component';
     HttpClientModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, AppRoutingModule,
     MatInputModule, MatCardModule, MatGridListModule, MatListModule, MatTableModule, MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule, MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

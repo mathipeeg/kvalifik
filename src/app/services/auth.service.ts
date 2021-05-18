@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ApiService } from './api.service';
-import { AppState } from './store/Store';
+import { AppState } from '../store/Store';
 import {catchError} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
-import {User} from './models';
+import {User} from '../models';
 
 @Injectable({
   providedIn: 'root'

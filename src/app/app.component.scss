@@ -23,3 +23,7 @@ $headerheight: 4em;
   flex-direction: row;
   align-items: center;
 }
+
+.nav-link:hover {
+  cursor: pointer;
+}

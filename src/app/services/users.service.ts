@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {NgRedux} from '@angular-redux/store';
-import {AppState} from './store/Store';
+import {AppState} from '../store/Store';
 import {ApiService} from './api.service';
-import {User} from './models';
+import {User} from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,9 @@ export class UsersService extends ApiService {
     });
   }
 
-  loadUser() {
-
+  getUserById(id: string) {
+    const url = 'https://kvalifik-ccc4d-default-rtdb.europe-west1.firebasedatabase.app/users/' + id + '.json';
+    return this.http.get(url, this.getHttpOptions());
   }
 
   get getUser() {

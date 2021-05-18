@@ -1,7 +1,7 @@
 import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService } from '../data.service';
+import { DataService } from '../services/data.service';
 import { PostActions } from '../store/actions/PostActions';
 import { AppState } from '../store/Store';
 import {Post} from '../models';

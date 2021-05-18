@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { AppState } from './../Store';
-import { AuthService} from './../../auth.service';
+import { AuthService} from '../../services/auth.service';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../../models';
 import {Subject} from 'rxjs';

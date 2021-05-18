@@ -1,0 +1,28 @@
+#form-container{
+  display: flex;
+
+  .field-div {
+    padding: 10px;
+    display: flex;
+    //justify-content: space-between;
+    flex-direction: column;
+    mat-label {
+      padding-right: 10px;
+    }
+  }
+
+  .comment {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+    #comment-field {
+
+    }
+
+    #user-field {
+
+    }
+  }
+
+}

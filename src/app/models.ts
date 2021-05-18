@@ -51,7 +51,7 @@ export class Post {
   pinned: boolean;
   state: string; // Todo: look into enums
   likes: number;
-  responsible: Volunteer[];
+  responsible: string[];
   collaboration: string;
 }
 
@@ -71,10 +71,17 @@ export class StudyProgramme {
 
 export class Comment {
   id;
-  author: string;
+  authorId: string;
+  author?: CommentUser;
   createdDate: Date;
   text: string;
   likes: number;
+}
+
+export class CommentUser {
+  id;
+  name: string;
+  profilePhoto?: string;
 }
 
 export class User {

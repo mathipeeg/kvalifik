@@ -1,12 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import {Post} from '../models';
+import {Component, OnInit} from '@angular/core';
+import {Collection, Post, Comment, CommentUser, User, Volunteer, Collaboration} from '../models';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {DataService} from '../data.service';
+import {DataService} from '../services/data.service';
 import {PostActions} from '../store/actions/PostActions';
 import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../store/Store';
 import { Location } from '@angular/common'
+import { CollectionActions } from '../store/actions/CollectionActions';
+import {CommentActions} from '../store/actions/CommentActions';
+import {UserActions} from '../store/actions/UserActions';
+import {UsersService} from '../services/users.service';
+import {VolunteerActions} from '../store/actions/VolunteerActions';
+import {CollaborationActions} from '../store/actions/CollaborationActions';
 
 @Component({
   selector: 'app-manage-post',
@@ -19,31 +25,10 @@ export class ManagePostComponent implements OnInit {
   public postForm: FormGroup;
   public headerTitle: string = 'Create New Post';
   public editMode: boolean = false;
-  // loaded: boolean = false;
-  tempCommentUser = {
-    firstName: 'empty',
-    lastName: 'empty',
-    profileImage: 'empty'
-  }
-  tempComment = {
-    id: -1,
-    author: this.tempCommentUser,
-    createdDate: new Date(),
-    text: 'empty',
-    likes: 0
-  }
-  tempResponsible = {
-    id: -1,
-    name: 'empty'
-  }
-  tempCollection = {
-    id: -1,
-    title: 'empty'
-  }
-
-  tempCollections = ['Collection1', 'Collection2', 'Collection3'];
-  tempComments = ['U ROCK!', 'WOAH CALM DOWN SUPERSTAR','oooo neat!'];
-  tempArray = ['temp1', 'temp2', 'temp3'];
+  collections: Collection[] = [];
+  comments: Comment[] = [];
+  volunteers: Volunteer[] = [];
+  collaborations: Collaboration[] = [];
 
   constructor(private route: ActivatedRoute,
               private tempDataService: DataService,
@@ -51,22 +36,53 @@ export class ManagePostComponent implements OnInit {
               private router: Router,
               private postActions: PostActions,
               private ngRedux: NgRedux<AppState>,
-              private location: Location) { }
+              private location: Location,
+              private collectionActions: CollectionActions,
+              private commentActions: CommentActions,
+              private volunteerActions: VolunteerActions,
+              private collabActions: CollaborationActions) { }
 
   ngOnInit(): void {
     const id: string = this.route.snapshot.paramMap.get('myId');
-    console.log(id);
 
     if (id) {
       this.headerTitle = 'Edit Post';
       this.editMode = true;
     }
 
-    // this.selectedPost = this.tempDataService.getPosts().find(post => post.id === id);
+    this.collectionActions.readCollections();
+    this.volunteerActions.readVolunteers();
+    this.collabActions.readCollabs();
+
+    this.ngRedux.select(state => state.collections).subscribe(res => { // holder øje med state af posts og får dem fra select()
+      this.collections = res.collections;
+    });
+    this.ngRedux.select(state => state.volunteers).subscribe(res => { // holder øje med state af posts og får dem fra select()
+      this.volunteers = res.volunteers;
+    });
+    this.ngRedux.select(state => state.collabs).subscribe(res => { // holder øje med state af posts og får dem fra select()
+      this.collaborations = res.collabs;
+    });
     this.ngRedux.select(state => state.posts).subscribe(res => {
       this.selectedPost = res.posts.find(post => post.id === id);
-      // console.log(this.selectedPost);
     });
+    if(this.editMode) {
+      this.commentActions.readComments();
+      this.ngRedux.select(state => state.comments).subscribe(res => { // holder øje med state af posts og får dem fra select()
+        if (this.selectedPost) {
+          for (const i of res.comments) {
+            if (this.selectedPost.comments.includes(i.id)) {
+              this.comments.push(i);
+            }
+          }
+        }
+      });
+    }
+    // for (const i in this.selectedPost.comments) {
+    //   for (const j in this.comments) {
+    //     console.log(i[0], j[0]);
+    //   }
+    // }
 
     if (this.selectedPost === undefined) {
       this.selectedPost = new Post();
@@ -84,40 +100,44 @@ export class ManagePostComponent implements OnInit {
   }
 
   onSubmitPost(state) {
-    // console.log(this.postForm);
-
-    // Can you store this post object in the temp. data service
-    // and then navigate to the posts component?
     if (!this.editMode) {
       this.selectedPost = this.postForm.value;
       this.selectedPost.createdDate = new Date();
       this.selectedPost.likes = 0;
-      this.selectedPost.comments = [this.tempComment];
+      this.selectedPost.comments = ['empty'];
       this.selectedPost.media = 'test';
-      this.selectedPost.pinned = false;
-      this.selectedPost.responsible = [this.tempResponsible];
+      this.selectedPost.pinned = this.postForm.value.pinned;
+      this.selectedPost.responsible = ['empty'];
       this.selectedPost.collaboration = 'test';
-      this.selectedPost.collections = [this.tempCollection];
+      this.selectedPost.collections = ['empty'];
       this.selectedPost.state = state;
 
       // console.log(this.selectedPost);
       this.postActions.addPost(this.selectedPost);
     } else {
-      console.log('edit');
-      this.selectedPost.title = this.postForm.value.title;
-      this.selectedPost.text = this.postForm.value.text;
+      const edits = ['title', 'text', 'media', 'collections', 'pinned'];
+      for (const edit of edits) {
+        this.selectedPost[edit] = this.postForm.value[edit];
+      }
+      this.selectedPost.state = state;
+      // volunteer
+      // date
+      // activity
+
+      // this.selectedPost.state = state;
+      // this.selectedPost.title = this.postForm.value.title;
+      // this.selectedPost.text = this.postForm.value.text;
       this.postActions.updatePost(this.selectedPost);
     }
-      // this.tempDataService.addPost(this.selectedPost);
-      this.router.navigate(['posts']);
+    this.router.navigate(['/posts']);
   }
 
   deletePost() {
     this.postActions.deletePost(this.selectedPost);
+   this.router.navigate(['/posts']);
   }
 
   back(): void {
     this.location.back();
   }
-
 }

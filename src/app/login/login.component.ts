@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserActions } from '../store/actions/UserActions';
 import {Observable, Subject} from 'rxjs';
-import {CommentUser, User} from '../models';
+import {User} from '../models';
 import {map, startWith, switchMap, takeUntil, withLatestFrom} from 'rxjs/operators';
-import {AuthService} from '../auth.service';
+import {AuthService} from '../services/auth.service';
 import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../store/Store';
 
@@ -31,8 +31,6 @@ export class LoginComponent implements OnInit {
         password: ['', Validators.required] // Single validator
       }
     )
-
-
   }
 
   onSubmit(): void {

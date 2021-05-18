@@ -2,9 +2,10 @@ import { NgRedux } from '@angular-redux/store';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { AppState } from './store/Store';
-import {Observable} from 'rxjs';
-import {Post} from './models';
+import { AppState } from '../store/Store';
+import {Observable, of} from 'rxjs';
+import {Post} from '../models';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -42,8 +43,17 @@ export class PostsService extends ApiService {
 
   deletePost(post: Post): Observable<any> {
     const token = this.ngRedux.getState().users.token;
-    const url = 'https://kvalifik-ccc4d-default-rtdb.europe-west1.firebasedatabase.app/posts' + post.id + '.json';
+    console.log(post.id);
+    const url = 'https://kvalifik-ccc4d-default-rtdb.europe-west1.firebasedatabase.app/posts/' + post.id + '.json';
 
-    return this.http.delete(url, this.getHttpOptions());
+    return this.http.delete(url, this.getHttpOptions()).pipe(catchError(this.handleError(`post ${url}`, undefined)));
+  }
+
+  private handleError<T>(operation = 'operation', result?: T): any {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      console.error(operation + ' - ' + JSON.stringify(error));
+      return of(result as T);
+    };
   }
 }

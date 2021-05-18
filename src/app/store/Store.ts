@@ -1,11 +1,31 @@
 import { routerReducer } from '@angular-redux/router';
-import {Action, combineReducers} from 'redux';
+import {Action, AnyAction, combineReducers} from 'redux';
 import { postsReducer } from './reducers/PostReducer';
 import { usersReducer } from './reducers/UserReducer';
-import {Post, User} from '../models';
+import { collectionReducer } from './reducers/CollectionReducer';
+import { commentReducer } from './reducers/CommentReducer';
+import {volunteerReducer} from './reducers/VolunteerReducer';
+import {Collection, Post, User, Comment, Volunteer, Collaboration} from '../models';
+import {collaborationReducer} from './reducers/CollaborationReducer';
 
 export class PostState {
     posts: Post[];
+}
+
+export class CollectionState {
+    collections: Collection[];
+}
+
+export class CommentState {
+    comments: Comment[];
+}
+
+export class VolunteerState {
+    volunteers: Volunteer[];
+}
+
+export class CollaborationState {
+    collabs: Collaboration[];
 }
 
 export class UserState {
@@ -19,12 +39,19 @@ export class UserState {
 export class AppState {
     posts?: PostState;
     users?: UserState;
+    collections?: CollectionState;
+    comments?: CommentState;
+    volunteers?: VolunteerState;
+    collabs?: CollaborationState;
     // events?: EventState;
 }
 export const rootReducer = combineReducers<AppState>({
+    users: usersReducer,
     posts: postsReducer,
-    users: usersReducer
-    // events: eventsReducer,
-
+    collections: collectionReducer,
+    comments: commentReducer,
+    volunteers: volunteerReducer,
+    collabs: collaborationReducer
+  // events: eventsReducer,
     // router: routerReducer
 });

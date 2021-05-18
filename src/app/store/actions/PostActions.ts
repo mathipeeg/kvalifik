@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { AppState } from '../Store';
-import { PostsService } from 'src/app/posts.service';
+import { PostsService } from 'src/app/services/posts.service';
 import {Post} from '../../models';
 
 @Injectable({ providedIn: 'root'})
@@ -70,7 +70,10 @@ export class PostActions {
       type: PostActions.DELETE_POST,
       payload: post
     });
-    this.postService.deletePost(post);
+
+    this.postService.deletePost(post).subscribe(res => {
+      console.log('Post deleted');
+    });
   }
 
 }

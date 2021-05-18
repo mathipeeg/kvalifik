@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {LoginComponent} from './login/login.component';
-import {AuthService} from './auth.service';
+import {AuthService} from './services/auth.service';
 import {UserActions} from './store/actions/UserActions';
 
 @Component({
