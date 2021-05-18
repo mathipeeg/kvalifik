@@ -13,6 +13,7 @@ import {UserActions} from '../store/actions/UserActions';
 import {UsersService} from '../services/users.service';
 import {VolunteerActions} from '../store/actions/VolunteerActions';
 import {CollaborationActions} from '../store/actions/CollaborationActions';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-manage-post',
@@ -52,7 +53,8 @@ export class ManagePostComponent implements OnInit {
               private commentActions: CommentActions,
               private volunteerActions: VolunteerActions,
               private collabActions: CollaborationActions,
-              private userService: UsersService) { }
+              private userService: UsersService,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     const id: string = this.route.snapshot.paramMap.get('myId');
@@ -123,12 +125,22 @@ export class ManagePostComponent implements OnInit {
       this.selectedPost.state = state;
       this.postActions.updatePost(this.selectedPost);
     }
-    this.router.navigate(['/posts']);
+    this.router.navigate(['/posts', {published: true}]);
   }
 
   deletePost() {
     this.postActions.deletePost(this.selectedPost);
    this.router.navigate(['/posts']);
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogContentExampleDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.deletePost();
+      }
+    });
   }
 
   back(): void {
@@ -148,3 +160,9 @@ export class ManagePostComponent implements OnInit {
     this.commentActions.deleteComment(comment);
   }
 }
+
+@Component({
+  selector: 'dialog-content-example-dialog',
+  templateUrl: 'dialog-content-example-dialog.html',
+})
+export class DialogContentExampleDialog {}

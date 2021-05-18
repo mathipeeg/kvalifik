@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Delete post / event / collection...</h2>
+<mat-dialog-content class="mat-typography">
+  <p>You can't undo this action.</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial color="warn">Delete</button>
+</mat-dialog-actions>

@@ -28,7 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostsPipe } from './posts.pipe';
 import { PostsComponent } from './posts/posts.component';
 import { MatTableModule } from '@angular/material/table';
-import { ManagePostComponent } from './manage-post/manage-post.component'
+import {DialogContentExampleDialog, ManagePostComponent} from './manage-post/manage-post.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ProfileComponent } from './profile/profile.component';
@@ -36,6 +36,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { VolunteersComponent } from './volunteers/volunteers.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { VolunteersComponent } from './volunteers/volunteers.component';
     ProfileComponent,
     DashboardComponent,
     CollectionsComponent,
-    VolunteersComponent
+    VolunteersComponent,
+    DialogContentExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,7 @@ import { VolunteersComponent } from './volunteers/volunteers.component';
     HttpClientModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, AppRoutingModule,
     MatInputModule, MatCardModule, MatGridListModule, MatListModule, MatTableModule, MatSelectModule,
-    MatSlideToggleModule, MatDialogModule
+    MatSlideToggleModule, MatDialogModule, MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

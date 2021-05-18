@@ -7,6 +7,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   cursor: pointer;
 }
 
+.snackbar {
+  background: #298629;
+  color: white;
+  margin-top: 50px;
+}
+
+.mat-simple-snackbar-action {
+  color: white;
+}
+
 $innerMargin: 20px;
 $outerMargin: 30px;
 

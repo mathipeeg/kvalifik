@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DataService} from '../services/data.service';
 import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../store/Store';
@@ -10,6 +10,7 @@ import {CollectionActions} from '../store/actions/CollectionActions';
 import {VolunteerActions} from '../store/actions/VolunteerActions';
 import {CollaborationService} from '../collaboration.service';
 import {CollaborationActions} from '../store/actions/CollaborationActions';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-posts',
@@ -29,13 +30,16 @@ export class PostsComponent implements OnInit {
               private tempDataService: DataService,
               private ngRedux: NgRedux<AppState>,
               private postActions: PostActions,
-              private collectionActions: CollectionActions,
-              private volunteerActions: VolunteerActions,
-              private collabActions: CollaborationActions) { }
+              private route: ActivatedRoute,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    const published: string = this.route.snapshot.paramMap.get('published');
     this.postActions.readPosts();
-
+    if (published && published === 'true') {
+      console.log('test');
+      this.openSnackBar('Your event/post was successfully published!', 'x');
+    }
 
     this.ngRedux.select(state => state.posts).subscribe(res => { // holder øje med state af posts og får dem fra select()
       this.posts = res.posts;
@@ -52,5 +56,14 @@ export class PostsComponent implements OnInit {
   openPost(id: any) {
     // console.log(id);
     this.router.navigate(['/post', {postId: id}])
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+      panelClass: ['snackbar'],
+      verticalPosition: 'top',
+      horizontalPosition: 'end'
+    });
   }
 }
