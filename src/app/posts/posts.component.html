@@ -1,40 +1,54 @@
-<div class="new-post">
-  <button mat-raised-button routerLink="/managepost">New post</button>
+<div class="container">
+
+  <div class="post-container">
+    <div class="top-div">
+      <div class="Title">
+        <h2>Posts</h2>
+      </div>
+      <div class="new-post">
+        <button class="new-post-btn" mat-raised-button routerLink="/managepost"><div><span>New post</span>
+          <span class="material-icons-outlined">add_circle</span></div></button>
+      </div>
+    </div>
+
+    <table *ngIf="posts" mat-table [dataSource]="posts" class="mat-elevation-z8">
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let element" (click)="openPost(element.id)"> {{element.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef> Created </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdDate | date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.media}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="activity">
+        <th mat-header-cell *matHeaderCellDef> Activity </th>
+        <td mat-cell *matCellDef="let element"> <div [ngClass]="{'activity-div': element.state === 'PUBLISHED', 'activity-div-draft': element.state === 'DRAFT'}" *ngIf="element.comments">
+          <div><span class="material-icons-outlined activity">thumb_up</span>{{element.likes}}</div>
+          <div><span class="material-icons-outlined activity">chat</span>{{element.comments.length - 1}}</div>
+        </div></td>
+        <td mat-cell *matCellDef="let element"> {{element.likes}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> <div [ngClass]="{'draft': element.state === 'DRAFT', 'published': element.state === 'PUBLISHED'}">{{element.state}}</div> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element"> <button (click)="editPost(element.id)" mat-raised-button class="edit-button">Edit</button> </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
 </div>
-
-<table *ngIf="posts" mat-table [dataSource]="posts" class="mat-elevation-z8">
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef> Title </th>
-    <td mat-cell *matCellDef="let element" (click)="openPost(element.id)"> {{element.title}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="created">
-    <th mat-header-cell *matHeaderCellDef> Created </th>
-    <td mat-cell *matCellDef="let element"> {{element.createdDate | date}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef> Type </th>
-    <td mat-cell *matCellDef="let element"> {{element.media}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="activity">
-    <th mat-header-cell *matHeaderCellDef> Activity </th>
-    <td mat-cell *matCellDef="let element"> <div *ngIf="element.comments">{{element.likes}} {{element.comments.length - 1}}</div></td>
-    <td mat-cell *matCellDef="let element"> {{element.likes}}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef> Status </th>
-    <td mat-cell *matCellDef="let element" [ngClass]="{'draft': element.state === 'DRAFT', 'published': element.state === 'PUBLISHED'}"> {{element.state}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="edit">
-    <th mat-header-cell *matHeaderCellDef> </th>
-    <td mat-cell *matCellDef="let element"> <button (click)="editPost(element.id)" mat-raised-button>Edit</button> </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-

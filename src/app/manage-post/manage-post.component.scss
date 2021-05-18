@@ -1,28 +1,192 @@
-#form-container{
-  display: flex;
+@import'../../styles.scss';
 
-  .field-div {
-    padding: 10px;
+.container {
+  width: 50vw;
+  margin: calc(#{$outerMargin} * 2) $innerMargin $innerMargin $innerMargin;
+
+  .nav-link {
     display: flex;
-    //justify-content: space-between;
+    align-items: center;
+    font-family: "Microsoft JhengHei";
+    font-size: 14px;
+    color: dimgrey;
+    padding: 0 0 $innerMargin 0;
+
+    span {
+      margin-right: 5px;
+    }
+  }
+
+  #form-container {
+    display: flex;
+    background: white;
+    border-radius: 15px;
+    padding: $innerMargin;
     flex-direction: column;
+    box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.1);
+
     mat-label {
-      padding-right: 10px;
+      font-size: 13px;
+      font-weight: bold;
+      padding-bottom: $innerMargin;
+      color: $primary;
+    }
+
+    .title {
+      color: $primary;
+      font-family: "Microsoft JhengHei";
+      font-size: 25px;
+      font-weight: bolder;
+    }
+
+    .field-div {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+
+      mat-label {
+        padding-right: 10px;
+      }
+
+      span {
+        font-family: "Microsoft JhengHei";
+        font-size: 12px;
+        color: dimgrey;
+        padding-bottom: $innerMargin;
+      }
+    }
+
+    .button-div {
+      padding-top: $innerMargin;
+      padding-bottom: $innerMargin;
+      display: flex;
+      flex-direction: column;
+
+      .top-btn {
+        display: flex;
+        flex-direction: row;
+
+        .spaced-spans {
+          width: calc(calc(50vw/2) - calc(#{$innerMargin} * 6));
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+
+      .bottom-btn {
+        display: flex;
+      }
+
+      span {
+        font-size: 18px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .smaller-font {
+        font-size: 15px;
+      }
+
+      #delete-btn {
+        border: 2px solid darkred;
+        color: darkred;
+      }
+
+      #savePost {
+        background-color: forestgreen;;
+        color: white;
+      }
+
+      #draft-btn {
+        border: 2px solid #131313;
+        color: #131313;
+      }
+
+      button {
+        margin: $innerMargin;
+        display: flex;
+        align-items: center;
+        width: calc(calc(50vw/2) - calc(#{$innerMargin} * 4));
+        //height: 3rem;
+      }
     }
   }
 
-  .comment {
+  .comments {
     display: flex;
+    background: white;
+    border-radius: 15px;
+    margin-top: $innerMargin;
+    margin-bottom: $innerMargin;
+    padding: $innerMargin;
     flex-direction: column;
-    padding: 10px;
+    box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.1);
 
-    #comment-field {
-
+    mat-label {
+      color: $primary;
+      font-family: "Microsoft JhengHei";
+      font-size: 25px;
+      font-weight: bolder;
     }
 
-    #user-field {
+    .comment {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 10px 10px 10px;
 
+      #user-field {
+        //font-family: "Microsoft JhengHei";
+        color: $primary;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .top-comment .bottom-comment {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        font-family: "Microsoft JhengHei";
+      }
+
+      .top-comment {
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+        padding-top: 5px;
+
+        span {
+          width: fit-content;
+          font-size: 25px;
+        }
+      }
+
+      .bottom-comment {
+        padding-top: 5px;
+        font-size: 10px;
+        color: dimgrey;
+      }
+
+      //.bottom-comment {
+      //  display: flex;
+      //  flex-direction: row;
+      //}
+
+      #comment-field {
+
+      }
+
+      #user-field {
+
+      }
     }
   }
+}
 
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+  width: 300px !important;
+}
+
+.mat-button-wrapper {
+  width: 100%;
 }

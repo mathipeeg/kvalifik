@@ -1,22 +1,27 @@
-<mat-toolbar>
-  <div class="header">
-    <span class="nav-link" routerLink="">CBS Students (Kvalifik)</span>
-    <div class="nav-link" routerLink="/signup">
-      <mat-icon aria-hidden="false" aria-label="Example home icon" routerLink="/signup">account_box</mat-icon>
-      Signup
+<div class="background-div">
+  <mat-toolbar>
+    <div class="header">
+      <div></div>
+      <div class="nav-link" routerLink=""><img alt="Logo" src="assets/Logo.PNG"></div>
+      <div>
+        <div class="nav-link" routerLink="/signup">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" routerLink="/signup">account_box</mat-icon>
+          Signup
+        </div>
+        <div class="nav-link" routerLink="/login">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" routerLink="/login">account_box</mat-icon>
+          Login
+        </div>
+      </div>
     </div>
-    <div class="nav-link" routerLink="/login">
-      <mat-icon aria-hidden="false" aria-label="Example home icon" routerLink="/login">account_box</mat-icon>
-      Login
-    </div>
-  </div>
-</mat-toolbar>
+  </mat-toolbar>
 
-<div class="container">
-  <div class="sidenav">
-    <app-sidenav></app-sidenav>
-  </div>
-  <div class="content">
-    <router-outlet></router-outlet>
+  <div class="container">
+    <div class="sidenav">
+      <app-sidenav></app-sidenav>
+    </div>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

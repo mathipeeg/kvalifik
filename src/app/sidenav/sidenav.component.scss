@@ -1,3 +1,16 @@
-.menuItem {
-    
+@import'../../styles.scss';
+
+//.mat-list-base .mat-list-item .mat-list-item-content-reverse, .mat-list-base .mat-list-option .mat-list-item-content-reverse {
+//  padding: $innerMargin;
+//}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  font-family: "Microsoft JhengHei";
+
+  mat-icon {
+    margin-right: $innerMargin;
+    color: $primary;
+  }
 }

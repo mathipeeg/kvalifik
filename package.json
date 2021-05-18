@@ -26,6 +26,7 @@
     "@angular2-material/slide-toggle": "^2.0.0-alpha.8-3",
     "@material/dialog": "^11.0.0",
     "@types/jest": "^26.0.23",
+    "angular-material-inputs": "^0.1.0",
     "redux": "^4.0.1",
     "rxjs": "~6.6.0",
     "tassign": "^1.0.0",

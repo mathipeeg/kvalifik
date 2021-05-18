@@ -21,6 +21,7 @@ import {CollaborationActions} from '../store/actions/CollaborationActions';
 })
 export class ManagePostComponent implements OnInit {
 
+  currentUser: User | undefined;
   public selectedPost: Post;
   public postForm: FormGroup;
   public headerTitle: string = 'Create New Post';
@@ -50,10 +51,12 @@ export class ManagePostComponent implements OnInit {
               private collectionActions: CollectionActions,
               private commentActions: CommentActions,
               private volunteerActions: VolunteerActions,
-              private collabActions: CollaborationActions) { }
+              private collabActions: CollaborationActions,
+              private userService: UsersService) { }
 
   ngOnInit(): void {
     const id: string = this.route.snapshot.paramMap.get('myId');
+    this.currentUser = this.userService.getUser;
 
     if (id) {
       this.headerTitle = 'Edit Post';
@@ -130,5 +133,18 @@ export class ManagePostComponent implements OnInit {
 
   back(): void {
     this.location.back();
+  }
+
+  deleteComment(comment: Comment) {
+    for (const i of this.selectedPost.comments) {
+      if (i.manualId === comment.manualId) {
+        const tempArray = this.selectedPost.comments; // copy of the array.
+        const j = this.selectedPost.comments.findIndex(ele => ele.manualId === i.id);
+        tempArray.splice(j, 1);
+        this.selectedPost.comments = tempArray;
+      }
+    }
+    this.postActions.updatePost(this.selectedPost);
+    this.commentActions.deleteComment(comment);
   }
 }

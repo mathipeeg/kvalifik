@@ -2,3 +2,12 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.nav-link:hover {
+  cursor: pointer;
+}
+
+$innerMargin: 20px;
+$outerMargin: 30px;
+
+$primary: #5050a4;

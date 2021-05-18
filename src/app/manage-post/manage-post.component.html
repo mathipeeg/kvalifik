@@ -1,74 +1,99 @@
-<h3>{{headerTitle}}</h3>
+<div class="container">
+  <div (click)="back()" class="nav-link"><span class="material-icons-outlined">chevron_left</span>Back</div>
 
-<button mat-raised-button (click)="back()">Back</button>
-<div id="form-container">
-  <form [formGroup]="postForm">
-    <div class="field-div">
-      <mat-label>Title</mat-label>
-      <input matInput id="titleInput" placeholder="Title" formControlName="title">
-    </div>
-    <div class="field-div">
-      <mat-label>Text</mat-label>
-      <textarea *ngIf="selectedPost" matInput id="textInput" [placeholder]="selectedPost.text" formControlName="text"></textarea>
-    </div>
+  <div id="form-container">
+   <div class="title">{{headerTitle}}</div>
 
-    <div class="field-div">
-      <mat-label>Add media</mat-label>
-<!--      <button formControlName="media" mat-raised-button id="mediaInput">Add new media</button>-->
-      <input matInput id="mediaInput" placeholder="Media" formControlName="media">
-    </div>
-
-    <div class="field-div">
-      <mat-form-field appearance="fill">
-        <mat-label>Collections</mat-label>
-        <mat-select formControlName="collections" multiple>
-          <mat-option *ngFor="let coll of collections" [value]="coll.id" >{{coll.title}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-    <div class="field-div">
-      <mat-label>Pinned</mat-label>
-      <mat-slide-toggle formControlName="pinned"></mat-slide-toggle>
-    </div>
-
-    <div *ngIf="!editMode" class="field-div">
-      <mat-form-field appearance="fill">
-        <mat-label>Responsible</mat-label>
-        <mat-select formControlName="responsible" multiple>
-          <mat-option *ngFor="let volunteer of volunteers" [value]="volunteer.id" >{{volunteer.firstName}} {{volunteer.lastName}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-    <div *ngIf="!editMode" class="field-div">
-      <mat-label>Collaboration</mat-label>
-      <mat-select formControlName="collaboration">
-        <mat-option *ngFor="let collab of collaborations" [value]="collab.id">
-          {{collab.title}}
-        </mat-option>
-      </mat-select>
-    </div>
-
-    <button mat-raised-button (click)="onSubmitPost('DRAFT')">Save draft</button>
-    <button type="button" mat-raised-button id="savePost" color="primary" (click)="onSubmitPost('PUBLISHED')">Publish post / save changes</button>
-    <button type="button" *ngIf="editMode" mat-raised-button (click)="deletePost()">Delete post</button>
-
-    <div class="comments" *ngIf="editMode">
-      <mat-label>Comments</mat-label>
-      <div class="comment" *ngFor="let comment of comments">
-        <div id="user-field">
-<!--        {{comment.author.profilePhoto}}-->
-          {{comment.author.name}}
+    <form [formGroup]="postForm">
+      <mat-form-field>
+        <div class="field-div">
+          <mat-label>Title</mat-label>
+          <input matInput type="text" id="titleInput" placeholder="Title" formControlName="title">
         </div>
-        <div id="comment-field">
-          {{comment.text}}
-          {{comment.createdDate | date}}
-          {{comment.likes}}
+      </mat-form-field>
+
+      <div class="field-div">
+        <mat-label>Text</mat-label>
+        <textarea *ngIf="selectedPost" id="textInput" [placeholder]="selectedPost.text" formControlName="text"></textarea>
+      </div>
+
+      <div class="field-div">
+        <mat-form-field>
+          <mat-label>Add media</mat-label>
+          <br>
+          <span>You can add one media type to your post. If you want to change the media type, you need to delete the added media first.</span>
+    <!--      <button formControlName="media" mat-raised-button id="mediaInput">Add new media</button>-->
+          <input matInput type="text" id="mediaInput" placeholder="Media" formControlName="media">
+        </mat-form-field>
+      </div>
+
+      <div class="field-div">
+        <mat-form-field appearance="fill">
+          <mat-label>Collections</mat-label>
+          <mat-select formControlName="collections" multiple>
+            <mat-option *ngFor="let coll of collections" [value]="coll.id" >{{coll.title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="field-div">
+        <mat-label>Pinned</mat-label>
+        <span>You can pin one post or event to the top of the page.</span>
+        <mat-slide-toggle formControlName="pinned"></mat-slide-toggle>
+      </div>
+
+      <div *ngIf="!editMode" class="field-div">
+        <mat-form-field appearance="fill">
+          <mat-label>Responsible</mat-label>
+          <mat-select formControlName="responsible" multiple>
+            <mat-option *ngFor="let volunteer of volunteers" [value]="volunteer.id" >{{volunteer.firstName}} {{volunteer.lastName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="!editMode" class="field-div">
+        <mat-label>Collaboration</mat-label>
+        <mat-select formControlName="collaboration">
+          <mat-option *ngFor="let collab of collaborations" [value]="collab.id">
+            {{collab.title}}
+          </mat-option>
+        </mat-select>
+      </div>
+      <hr>
+      <div class="button-div">
+        <div class="top-btn">
+          <button mat-raised-button id="draft-btn" (click)="onSubmitPost('DRAFT')"><div class="spaced-spans"><span class="smaller-font">Save draft</span> <span class="material-icons-outlined">save</span></div></button>
+          <button type="button" mat-raised-button id="savePost" (click)="onSubmitPost('PUBLISHED')"><div class="spaced-spans"><span class="smaller-font">Publish post / save changes</span> <span class="material-icons-outlined">library_books</span></div></button>
+        </div>
+        <div class="bottom-btn">
+          <button type="button" *ngIf="editMode" mat-raised-button id="delete-btn" (click)="deletePost()">Delete post</button>
         </div>
       </div>
+    </form>
+  </div>
+
+  <div class="comments" *ngIf="editMode">
+    <mat-label>Comments</mat-label>
+    <div class="comment" *ngFor="let comment of comments">
+      <div id="user-field">
+        <!--        {{comment.author.profilePhoto}}-->
+        {{comment.author.name}}
+      </div>
+      <div id="comment-field">
+        <div class="top-comment">
+          {{comment.text}}
+<!--          <div *ngIf="currentUser && currentUser.email.split('@')[0] === comment.author.name" (click)="deleteComment(comment)">-->
+            <span *ngIf="currentUser && currentUser.email.split('@')[0] === comment.author.name" (click)="deleteComment(comment)" class="material-icons-outlined">delete</span>
+<!--          </div>-->
+        </div>
+        <div class="bottom-comment">
+          {{comment.createdDate | date}}
+          {{comment.likes}} likes
+        </div>
+      </div>
+
     </div>
-  </form>
+  </div>
 </div>
 
 <!--export class Post {-->
