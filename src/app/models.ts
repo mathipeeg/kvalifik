@@ -1,7 +1,7 @@
 import {CommentTriviaType} from '@angular/compiler-cli/src/ngtsc/typecheck/src/comments';
 
 export class Collection {
-  id;
+  id: string;
   title: string;
   description: string;
   created: Date;
@@ -9,6 +9,7 @@ export class Collection {
   eventContent: string[];
   status: string;
   pinned: false;
+  // manualId: string;
 }
 
 export class Event {
@@ -37,9 +38,21 @@ export class EventSchedule {
 export class Collaboration {
   id;
   title: string;
-  description: string;
-  date: Date;
-  members: string[];
+  userId: string;
+  postId: string;
+  accepted: boolean;
+  postTitle: string;
+  postDescription: string;
+  postDate: string;
+}
+
+export class CollabPost {
+  title: string;
+  accepted: boolean;
+  postTitle: string;
+  postDescription: string;
+  postDate: Date;
+  postId: string;
 }
 
 export class Post {

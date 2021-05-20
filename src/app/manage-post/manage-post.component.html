@@ -8,13 +8,15 @@
       <mat-form-field>
         <div class="field-div">
           <mat-label>Title</mat-label>
-          <input matInput type="text" id="titleInput" placeholder="Title" formControlName="title">
+          <input *ngIf="editMode" matInput type="text" [placeholder]="selectedPost.title" formControlName="title">
+          <input *ngIf="!editMode" matInput type="text" placeholder="Title" formControlName="title">
         </div>
       </mat-form-field>
 
       <div class="field-div">
         <mat-label>Text</mat-label>
-        <textarea *ngIf="selectedPost" id="textInput" [placeholder]="selectedPost.text" formControlName="text"></textarea>
+        <textarea *ngIf="editMode" [placeholder]="selectedPost.text" formControlName="text"></textarea>
+        <textarea *ngIf="!editMode" [placeholder]="'Write your post'" formControlName="text"></textarea>
       </div>
 
       <div class="field-div">
@@ -62,7 +64,7 @@
       <hr>
       <div class="button-div">
         <div class="top-btn">
-          <button mat-raised-button id="draft-btn" (click)="onSubmitPost('DRAFT')"><div class="spaced-spans"><span class="smaller-font">Save draft</span> <span class="material-icons-outlined">save</span></div></button>
+          <button type="button" mat-raised-button id="draft-btn" (click)="onSubmitPost('DRAFT')"><div class="spaced-spans"><span class="smaller-font">Save draft</span> <span class="material-icons-outlined">save</span></div></button>
           <button type="button" mat-raised-button id="savePost" (click)="onSubmitPost('PUBLISHED')"><div class="spaced-spans"><span class="smaller-font">Publish post / save changes</span> <span class="material-icons-outlined">library_books</span></div></button>
         </div>
         <div class="bottom-btn">

@@ -1,1 +1,39 @@
-<p>dashboard works!</p>
+<div class="container">
+  <div class="collab-container">
+    <h1>Collaboration</h1>
+    <div>
+      <h2>Invitations ({{invitedCollabs.length}})</h2>
+      <div class="invitations" *ngFor="let invite of invitedCollabs">
+        <div>
+          <div class="postTitle">Post ● {{invite.postTitle}}</div>
+          <div class="title-date"><div class="title">{{invite.title}} </div><p>●</p><div class="date">{{invite.postDate | date}}</div></div>
+          <div class="description">{{invite.postDescription}}</div>
+        </div>
+        <div class="actions">
+          <button mat-raised-button id="accept-btn" (click)="accept(invite)">Accept</button>
+          <button mat-raised-button id="decline-btn" (click)="decline(invite)">Decline</button>
+        </div>
+      </div>
+      <div class="show-all">
+        <button mat-raised-button class="show-all-btn">Show all</button>
+      </div>
+    </div>
+
+    <div>
+      <h2>Accepted collaborations ({{acceptedCollabs.length}})</h2>
+      <div class="accepted" *ngFor="let invite of acceptedCollabs">
+        <div>
+          <div class="postTitle">Post ● {{invite.postTitle}}</div>
+          <div class="title-date"><div class="title">{{invite.title}} </div><p>●</p><div class="date">{{invite.postDate | date}}</div></div>
+          <div class="description">{{invite.postDescription}}</div>
+        </div>
+        <div class="actions">
+          <button mat-raised-button id="remove-btn" (click)="remove(invite)">Remove</button>
+        </div>
+      </div>
+      <div class="show-all">
+        <button mat-raised-button class="show-all-btn">Show all</button> <!-- todo: this -->
+      </div>
+    </div>
+  </div>
+</div>

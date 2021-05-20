@@ -1,0 +1,81 @@
+<div class="container">
+  <div (click)="back()" class="nav-link"><span class="material-icons-outlined">chevron_left</span>Back</div>
+
+  <div id="form-container">
+    <div class="title">{{headerTitle}}</div>
+
+    <form [formGroup]="collectionForm">
+      <mat-form-field>
+        <div class="field-div">
+          <mat-label>Title</mat-label>
+          <input *ngIf="editMode" matInput type="text" [placeholder]="currentCollection.title" formControlName="title">
+          <input *ngIf="!editMode" matInput type="text" placeholder="Name your collection" formControlName="title">
+        </div>
+      </mat-form-field>
+
+      <div class="field-div">
+        <mat-label>Description</mat-label>
+        <textarea *ngIf="editMode" [placeholder]="currentCollection.description" formControlName="description"></textarea>
+        <textarea *ngIf="!editMode" placeholder="Write a short description of the collection" formControlName="description"></textarea>
+      </div>
+
+      <div class="field-div">
+        <mat-label>Add content</mat-label>
+        <span id="font-span">You can add content to your collection. You can add events and posts.</span>
+        <div class="content-btns">
+          <button mat-raised-button (click)="openContentDialog('posts')"><span class="material-icons-outlined">library_books</span> Posts</button>
+          <button mat-raised-button (click)="openContentDialog('events')"> <span class="material-icons-outlined">insert_invitation</span> Events</button>
+        </div>
+          <!--      <button formControlName="media" mat-raised-button id="mediaInput">Add new media</button>-->
+        <div *ngIf="editMode">
+          <div *ngFor="let coll of currentContents" class="contents">
+            <div class="img-title">
+              <div *ngIf="coll.photo" class="img-container"><img alt="collection-photo" src="{{coll.photo}}"></div>
+              <div *ngIf="coll.media" class="img-container"><img alt="collection-photo" src="{{coll.media}}"></div>
+              <div class="mid-div">
+                <div class="content-title">{{coll.title}}</div>
+                <div class="date" *ngIf="coll.startDate">{{coll.startDate | date}}</div>
+                <div class="date" *ngIf="coll.createdDate">{{coll.createdDate | date}}</div>
+              </div>
+            </div>
+            <div class="delete-div">
+              <span class="material-icons-outlined">delete</span>
+            </div>
+          </div>
+          <button mat-raised-button class="remove-all" (click)="removeAllCollections()">Remove all</button>
+        </div>
+      </div>
+
+      <div class="field-div">
+        <mat-label>Pinned</mat-label>
+        <span>You can pin one post or event to the top of the page.</span>
+        <mat-slide-toggle formControlName="pinned"></mat-slide-toggle>
+      </div>
+
+      <hr>
+
+      <div class="button-div">
+        <div class="top-btn">
+          <button mat-raised-button id="draft-btn" (click)="onSubmitCollection('DRAFT')"><div class="spaced-spans"><span class="smaller-font">Save draft</span> <span class="material-icons-outlined">save</span></div></button>
+          <button type="button" mat-raised-button id="savePost" (click)="onSubmitCollection('PUBLISHED')"><div class="spaced-spans"><span class="smaller-font">Publish post / save changes</span> <span class="material-icons-outlined">library_books</span></div></button>
+        </div>
+        <div class="bottom-btn">
+          <button type="button" *ngIf="editMode" mat-raised-button id="delete-btn" (click)="openDialog(); ">Delete post</button> <!--deletePost()-->
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--export class Post {-->
+<!--id;-->
+<!--createdDate: Date;-->
+<!--title: string;-->
+<!--text: string;-->
+<!--media?: string;-->
+<!--collections: Collection[];-->
+<!--comments: Comment[];-->
+<!--pinned: boolean;-->
+<!--state: string;-->
+<!--likes: number;-->
+<!--}-->

@@ -13,6 +13,7 @@ import {VolunteersComponent} from './volunteers/volunteers.component';
 import {CollectionsComponent} from './collections/collections.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {PostComponent} from './post/post.component';
+import {ManageCollectionComponent} from './manage-collection/manage-collection.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'volunteers', component: VolunteersComponent },
   { path: 'collections', component: CollectionsComponent },
   { path: 'managepost', component: ManagePostComponent },
+  { path: 'managecollection', component: ManageCollectionComponent },
   { path: 'post', component: PostComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },

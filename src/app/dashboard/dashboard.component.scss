@@ -1,0 +1,106 @@
+@import "../../styles";
+
+.container {
+  margin: $innerMargin;
+
+  .collab-container {
+    background-color: white;
+    border-radius: 15px;
+    padding: $innerMargin;
+    width: 50vw;
+
+    h1 {
+      color: $primary;
+      font-family: "Microsoft JhengHei";
+      font-size: 25px;
+    }
+
+    h2 {
+      font-size: 14px;
+      margin-left: calc(#{$innerMargin} / 3);
+    }
+
+    .invitations, .accepted {
+      background-color: #f3f3f3;
+      border-radius: 15px;
+      padding: $innerMargin;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: $innerMargin 0 $innerMargin 0;
+
+      .postTitle {
+        font-size: 15px;
+        font-weight: bold;
+        //margin-bottom: calc(#{$innerMargin} / 2);
+      }
+
+      .title-date {
+        display: flex;
+        align-items: center;
+        //justify-content: center;
+        flex-direction: row;
+        font-size: 14px;
+        color: dimgrey;
+        font-weight: bold;
+        //margin-bottom: calc(#{$innerMargin} / 2);
+
+        .title {
+          margin-right: 5px;
+        }
+
+        .date {
+          margin-left: 5px;
+        }
+      }
+
+      .description {
+        font-size: 14px;
+        color: dimgrey;
+        font-family: "Microsoft JhengHei";
+      }
+
+      .actions {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #accept-btn {
+        background-color: $primary;
+        color: white;
+        display: flex;
+        width: 12rem;
+        justify-content: center;
+        font-size: 16px;
+        margin-bottom: $innerMargin;
+      }
+
+      #decline-btn, #remove-btn {
+        border: 2px solid #131313;
+        color: #131313;
+        width: 12rem;
+      }
+    }
+
+    .show-all-btn {
+      border: 2px solid $primary;
+      color: $primary;
+      width: 12rem;
+      margin: $innerMargin;
+    }
+
+    .show-all {
+      text-align: center;
+    }
+
+    .invitations {
+
+    }
+
+    .accepted {
+
+    }
+  }
+
+
+}

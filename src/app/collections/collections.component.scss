@@ -1,0 +1,137 @@
+@import'../../styles.scss';
+
+.container {
+  margin: $innerMargin;
+
+  .top-div {
+    margin-left: $innerMargin;
+    margin-right: $innerMargin;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      color: $primary;
+      font-family: "Microsoft JhengHei";
+      font-size: 25px;
+      font-weight: bolder;
+    }
+  }
+
+  .collection-container {
+    background-color: white;
+    border-radius: 15px;
+    padding: $innerMargin;
+
+    .new-post {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: $innerMargin;
+
+      .new-post-btn {
+        background-color: $primary;
+        color: white;
+        display: flex;
+        width: 12rem;
+        justify-content: center;
+        font-size: 16px;
+      }
+
+      div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 9rem;
+        align-items: center;
+      }
+
+      span {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+
+    mat-table {
+      background: rgba(100,100,100,0);
+    }
+    table {
+      width: 100%;
+      font-family: "Microsoft JhengHei";
+
+      .draft {
+        background-color: #ffa500;
+      }
+
+      .published {
+        background-color: palegreen;
+      }
+
+      .draft, .published {
+        width: fit-content;
+        border-radius: 5px;
+        padding: 6px;
+        color: black;
+        font-size: 10px;
+        font-weight: bold;
+      }
+
+      .cdk-column-title:hover {
+        cursor: pointer;
+      }
+
+      .edit-button {
+        border: 2px solid $primary;
+        color: $primary;
+        font-size: 14px;
+        min-width: 60px;
+        line-height: 28px;
+      }
+
+      .activity-div {
+        display: flex;
+        justify-content: space-between;
+        width: 3.5rem;
+        display: flex;
+        align-items: center;
+
+        div {
+          display: flex;
+          align-items: center;
+          color: $primary;
+        }
+
+        span {
+          color: $primary;
+        }
+      }
+
+      .activity {
+        font-size: 14px;
+        color: $primary;
+      }
+    }
+  }
+}
+
+.mat-table {
+  background: rgba(0,0,0,0);
+}
+
+.mat-elevation-z8 {
+  box-shadow: none;
+}
+
+td.mat-cell, th.mat-header-cell {
+  border-style: none;
+}
+
+th.mat-header-cell {
+  font-size: 15px;
+  color: black;
+  font-weight: bold;
+}
+
+td.mat-cell {
+  color: dimgrey;
+  font-size: 14px;
+}

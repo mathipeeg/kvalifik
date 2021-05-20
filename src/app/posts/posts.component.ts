@@ -37,7 +37,6 @@ export class PostsComponent implements OnInit {
     const published: string = this.route.snapshot.paramMap.get('published');
     this.postActions.readPosts();
     if (published && published === 'true') {
-      console.log('test');
       this.openSnackBar('Your event/post was successfully published!', 'x');
     }
 

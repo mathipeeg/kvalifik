@@ -37,6 +37,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { VolunteersComponent } from './volunteers/volunteers.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {DialogContentDialog, ManageCollectionComponent} from './manage-collection/manage-collection.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     DashboardComponent,
     CollectionsComponent,
     VolunteersComponent,
-    DialogContentExampleDialog
+    DialogContentExampleDialog,
+    ManageCollectionComponent,
+    DialogContentDialog
   ],
   imports: [
     BrowserModule,
@@ -68,7 +73,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     HttpClientModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, AppRoutingModule,
     MatInputModule, MatCardModule, MatGridListModule, MatListModule, MatTableModule, MatSelectModule,
-    MatSlideToggleModule, MatDialogModule, MatSnackBarModule
+    MatSlideToggleModule, MatDialogModule, MatSnackBarModule, DragDropModule, MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

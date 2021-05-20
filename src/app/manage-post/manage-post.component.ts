@@ -99,18 +99,19 @@ export class ManagePostComponent implements OnInit {
     }
 
     this.postForm = this.fb.group({
-      title: [this.selectedPost.title, Validators.required],
-      text: [this.selectedPost.text, Validators.required],
-      media: [this.selectedPost.media],
-      collections: [this.selectedPost.collections],
-      pinned: [this.selectedPost.pinned, Validators.required],
-      responsible: [this.selectedPost.responsible, Validators.required],
-      collaboration: [this.selectedPost.collaboration, Validators.required],
+      title: ['', Validators.required],
+      text: ['', Validators.required],
+      media: [''],
+      collections: [''],
+      pinned: ['', Validators.required],
+      responsible: ['', Validators.required],
+      collaboration: ['', Validators.required],
     });
   }
 
   onSubmitPost(state) {
     if (!this.editMode) {
+      console.log(this.postForm);
       this.selectedPost = this.postForm.value;
       this.selectedPost.createdDate = new Date();
       this.selectedPost.likes = 0;
