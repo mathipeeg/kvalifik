@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChatsComponent } from './chats/chats.component';
 import { EventsComponent } from './events/events.component';
 import { LoginComponent } from './login/login.component';
-import { NeweditpostComponent } from './neweditpost/neweditpost.component';
-import { Posts_oldComponent } from './posts_old/posts_old.component';
 import { RegisterComponent } from './register/register.component';
 import {PostsComponent} from './posts/posts.component';
 import {ManagePostComponent} from './manage-post/manage-post.component';
@@ -14,6 +12,7 @@ import {CollectionsComponent} from './collections/collections.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {PostComponent} from './post/post.component';
 import {ManageCollectionComponent} from './manage-collection/manage-collection.component';
+import {ManageEventComponent} from './manage-event/manage-event.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
@@ -24,13 +23,12 @@ const routes: Routes = [
   { path: 'collections', component: CollectionsComponent },
   { path: 'managepost', component: ManagePostComponent },
   { path: 'managecollection', component: ManageCollectionComponent },
+  { path: 'manageevent', component: ManageEventComponent },
   { path: 'post', component: PostComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
 
-  { path: 'postsold', component: Posts_oldComponent },
-  { path: 'managepostold', component: NeweditpostComponent },
 ];
 
 @NgModule({

@@ -8,7 +8,7 @@ import {Post} from '../models';
 import { MatTableModule } from '@angular/material/table';
 import {CollectionActions} from '../store/actions/CollectionActions';
 import {VolunteerActions} from '../store/actions/VolunteerActions';
-import {CollaborationService} from '../collaboration.service';
+import {CollaborationService} from '../services/collaboration.service';
 import {CollaborationActions} from '../store/actions/CollaborationActions';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
@@ -42,6 +42,13 @@ export class PostsComponent implements OnInit {
 
     this.ngRedux.select(state => state.posts).subscribe(res => { // holder øje med state af posts og får dem fra select()
       this.posts = res.posts;
+      for (const id in this.posts) {
+        if (this.posts[id].media.includes('jpg') || this.posts[id].media.includes('jpeg') || this.posts[id].media.includes('png')) {
+          this.posts[id].mediaType = 'Photo';
+        } else {
+          this.posts[id].mediaType = 'Video';
+        }
+      }
       // console.log(this.posts);
     });
     // this.tempData = this.tempDataService.getPosts();

@@ -5,7 +5,7 @@ import { PostsService } from 'src/app/services/posts.service';
 import {Collaboration, Collection, Comment} from '../../models';
 import {CollectionService} from '../../services/collection.service';
 import {CommentsService} from '../../services/comments.service';
-import {CollaborationService} from '../../collaboration.service';
+import {CollaborationService} from '../../services/collaboration.service';
 
 @Injectable({ providedIn: 'root'})
 export class CollaborationActions {

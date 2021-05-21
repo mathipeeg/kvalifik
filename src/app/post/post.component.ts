@@ -8,7 +8,7 @@ import {CollectionActions} from '../store/actions/CollectionActions';
 import {CommentActions} from '../store/actions/CommentActions';
 import {VolunteerActions} from '../store/actions/VolunteerActions';
 import {CollaborationActions} from '../store/actions/CollaborationActions';
-import {CollaborationService} from '../collaboration.service';
+import {CollaborationService} from '../services/collaboration.service';
 import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../store/Store';
 import {UsersService} from '../services/users.service';

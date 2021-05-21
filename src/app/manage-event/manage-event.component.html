@@ -1,0 +1,131 @@
+<div class="container">
+  <div (click)="back()" class="nav-link"><span class="material-icons-outlined">chevron_left</span>Back</div>
+
+  <div class="form-container"   *ngIf="currentEvent">
+    <div class="title">{{headerTitle}}</div>
+
+    <form [formGroup]="eventForm" (ngSubmit)="onSubmitPost(this.currentEvent.status)">
+      <div class="field-div">
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+            <input *ngIf="editMode" matInput type="text" [placeholder]="currentEvent.title" formControlName="title">
+            <input *ngIf="!editMode" matInput type="text" placeholder="Title" formControlName="title">
+        </mat-form-field>
+      </div>
+
+      <div class="field-div">
+        <mat-form-field>
+          <mat-label>Start date</mat-label>
+          <input matInput formControlName="startDate" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Start Time</mat-label>
+          <input *ngIf="editMode" matInput type="text" [placeholder]="currentEvent.startTime" formControlName="startTime">
+          <input *ngIf="!editMode" matInput type="text" placeholder="hh.mm" formControlName="startTime">
+        </mat-form-field>
+      </div>
+
+      <div class="field-div">
+        <mat-form-field>
+          <mat-label>End date</mat-label>
+          <input matInput formControlName="endDate" [matDatepicker]="picker2">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>End Time</mat-label>
+          <input *ngIf="editMode" matInput type="text" [placeholder]="currentEvent.endTime" formControlName="endTime">
+          <input *ngIf="!editMode" matInput type="text" placeholder="hh.mm" formControlName="endTime">
+        </mat-form-field>
+      </div>
+
+      <div class="field-div">
+<!--        <mat-form-field>-->
+          <mat-label>Description</mat-label>
+          <textarea *ngIf="editMode" [placeholder]="currentEvent.description" formControlName="description"></textarea>
+          <textarea *ngIf="!editMode" [placeholder]="'Write your post'" formControlName="description"></textarea>
+<!--        </mat-form-field>-->
+      </div>
+
+      <div class="field-div">
+        <mat-label>Event schedule (optional)</mat-label>
+        <div *ngFor="let event of schedule" class="schedule-container">
+          <div class="schedule-time">{{event.startTime}}</div>
+          <div class="schedule-title">{{event.title}}</div>
+          <div class="schedule-delete" (click)="removeSchedule(event.manualId)"><span class="material-icons-outlined">close</span></div>
+        </div>
+        <div>
+          <input #startTime class="schedule-start-input" placeholder="Start time"/>
+          <input #title class="schedule-title-input" placeholder="Title" (keyup.enter)="onEnter()">
+        </div>
+      </div>
+
+<!--      eventschedule-->
+
+      <div class="field-div">
+        <mat-form-field>
+          <mat-label>Photo</mat-label>
+          <div *ngIf="editMode"><img alt="event-photo" src="{{currentEvent.photo}}"></div>
+          <input *ngIf="editMode" matInput type="text" [placeholder]="currentEvent.photo" formControlName="photo">
+          <input *ngIf="!editMode" matInput type="text" placeholder="Title" formControlName="photo">
+        </mat-form-field>
+      </div>
+
+      <div class="field-div">
+        <mat-form-field>
+          <mat-label>Location</mat-label>
+          <input *ngIf="editMode" matInput type="text" [placeholder]="currentEvent.location" formControlName="location">
+          <input *ngIf="!editMode" matInput type="text" placeholder="Location" formControlName="location">
+        </mat-form-field>
+      </div>
+
+      <div class="field-div">
+        <mat-label>Pinned</mat-label>
+        <span class="span">You can pin one post or event to the top of the page.</span>
+        <mat-slide-toggle formControlName="pinned"></mat-slide-toggle>
+      </div>
+
+      <div class="field-div">
+        <mat-form-field appearance="fill">
+          <mat-label>Responsible</mat-label>
+          <mat-select formControlName="responsible" multiple>
+            <mat-option *ngFor="let volunteer of volunteers" [value]="volunteer.id" >{{volunteer.firstName}} {{volunteer.lastName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="field-div">
+        <mat-label>Collaboration</mat-label>
+        <mat-select formControlName="collaboration">
+          <mat-option *ngFor="let collab of collaborations" [value]="collab.id">
+            {{collab.title}}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <div class="button-div">
+        <div class="top-btn">
+          <button type="button" mat-raised-button id="draft-btn" (click)="onSubmitPost('DRAFT')"><div class="spaced-spans"><span class="smaller-font">Save draft</span> <span class="material-icons-outlined">save</span></div></button>
+          <button type="button" mat-raised-button id="savePost" (click)="onSubmitPost('PUBLISHED')"><div class="spaced-spans"><span class="smaller-font">Publish post / save changes</span> <span class="material-icons-outlined">library_books</span></div></button>
+        </div>
+        <div class="bottom-btn">
+          <button type="button" *ngIf="editMode" mat-raised-button id="delete-btn" (click)="openDialog(); ">Delete post</button> <!--deletePost()-->
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="form-container">
+    <form [formGroup]="eventForm">
+      <div class="field-div">
+        <mat-label>Room</mat-label>
+        <button mat-raised-button class="request-btn" (click)="openRoomDialog()">Request room</button>
+        <div *ngIf="currentEvent.room">
+          {{currentEvent.room}}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

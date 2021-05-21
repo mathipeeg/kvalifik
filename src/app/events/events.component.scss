@@ -1,0 +1,170 @@
+@import'../../styles.scss';
+
+.container {
+  //margin: $innerMargin;
+
+  .top-div {
+    //margin-left: $innerMargin;
+    margin-right: $innerMargin;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      color: $primary;
+      font-family: "Microsoft JhengHei";
+      font-size: 25px;
+      font-weight: bolder;
+    }
+  }
+
+  .event-container {
+    //background-color: white;
+    border-radius: 15px;
+    padding: $innerMargin;
+
+    .new-event {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: $innerMargin;
+
+      .new-event-btn {
+        background-color: $primary;
+        color: white;
+        display: flex;
+        width: 12rem;
+        justify-content: center;
+        font-size: 16px;
+      }
+
+      div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 9rem;
+        align-items: center;
+      }
+
+      span {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+
+    .table-container {
+      background-color: white;
+      border-radius: 15px;
+      padding: 5px;
+      margin: 0 $innerMargin $innerMargin 0;
+
+      table {
+        margin-bottom: $innerMargin;
+        width: 100%;
+        font-family: "Microsoft JhengHei";
+        border-collapse: collapse;
+        border-radius: 15px;
+
+        .title-th {
+          width: 25%;
+        }
+
+        .date-th {
+          width: 20%;
+        }
+
+        .location-th {
+          width: 25%;
+        }
+
+        .status-th {
+          width: 15%;
+        }
+
+        .edit-th {
+          width: 15%;
+        }
+
+        .edit-td {
+          text-align: end;
+        }
+
+        .draft {
+          background-color: #ffa500;
+        }
+
+        .published {
+          background-color: palegreen;
+        }
+
+        .past {
+          background-color: darkgrey;
+        }
+
+        .draft, .published, .past {
+          width: fit-content;
+          border-radius: 5px;
+          padding: 6px;
+          color: black;
+          font-size: 10px;
+          font-weight: bold;
+        }
+
+        .cdk-column-title:hover {
+          cursor: pointer;
+        }
+
+        .edit-button {
+          border: 2px solid $primary;
+          color: $primary;
+          font-size: 14px;
+          min-width: 60px;
+          line-height: 28px;
+        }
+
+        .activity-div-draft {
+          display: flex;
+          justify-content: space-between;
+          width: 3.5rem;
+
+          div {
+            display: flex;
+            align-items: center;
+            color: #a0a0a0;
+
+            span {
+              color: #a0a0a0;
+            }
+          }
+        }
+
+        .activity {
+          font-size: 14px;
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  .mat-table {
+    background-color:transparent!important;
+  }
+
+  .mat-elevation-z8 {
+    box-shadow: none;
+  }
+
+  td.mat-cell, th.mat-header-cell {
+    border-style: none;
+  }
+
+  th.mat-header-cell {
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
+  }
+
+  td.mat-cell {
+    color: dimgrey;
+    font-size: 14px;
+  }
+}

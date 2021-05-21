@@ -9,10 +9,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import {MatListModule, MatSelectionList} from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
-import { Posts_oldComponent } from './posts_old/posts_old.component';
 import { EventsComponent } from './events/events.component';
 import { ChatsComponent } from './chats/chats.component';
-import { NeweditpostComponent } from './neweditpost/neweditpost.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { PostComponent } from './post/post.component';
@@ -40,15 +38,17 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {DialogContentDialog, ManageCollectionComponent} from './manage-collection/manage-collection.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {DialogRoom, ManageEventComponent} from './manage-event/manage-event.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
-    Posts_oldComponent,
     EventsComponent,
     ChatsComponent,
-    NeweditpostComponent,
     PostComponent,
     LoginComponent,
     RegisterComponent,
@@ -61,7 +61,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     VolunteersComponent,
     DialogContentExampleDialog,
     ManageCollectionComponent,
-    DialogContentDialog
+    DialogContentDialog,
+    ManageEventComponent,
+    DialogRoom
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     HttpClientModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, AppRoutingModule,
     MatInputModule, MatCardModule, MatGridListModule, MatListModule, MatTableModule, MatSelectModule,
-    MatSlideToggleModule, MatDialogModule, MatSnackBarModule, DragDropModule, MatCheckboxModule
+    MatSlideToggleModule, MatDialogModule, MatSnackBarModule, DragDropModule, MatCheckboxModule,
+    MatDatepickerModule, MatNativeDateModule, MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

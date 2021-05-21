@@ -27,12 +27,15 @@ export class Event {
   pinned: false;
   responsible: string[];
   collaboration: string;
+  manualId: string;
+  room: string;
 }
 
 export class EventSchedule {
   id;
   title: string;
   startTime: string;
+  manualId: string;
 }
 
 export class Collaboration {
@@ -41,9 +44,6 @@ export class Collaboration {
   userId: string;
   postId: string;
   accepted: boolean;
-  postTitle: string;
-  postDescription: string;
-  postDate: string;
 }
 
 export class CollabPost {
@@ -53,6 +53,7 @@ export class CollabPost {
   postDescription: string;
   postDate: Date;
   postId: string;
+  collabId: string;
 }
 
 export class Post {
@@ -68,6 +69,8 @@ export class Post {
   likes: number;
   responsible: string[];
   collaboration: string;
+  manualId: string;
+  mediaType?: string;
 }
 
 export class Volunteer {

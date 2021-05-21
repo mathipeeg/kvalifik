@@ -6,7 +6,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CollectionService} from '../services/collection.service';
 import { Location } from '@angular/common'
 import {PostsService} from '../services/posts.service';
-import {EventService} from '../event.service';
+import {EventService} from '../services/event.service';
 import {DialogContentExampleDialog} from '../manage-post/manage-post.component';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
@@ -14,6 +14,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
 import {filter} from 'rxjs/operators';
 import {CollectionActions} from '../store/actions/CollectionActions';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 export interface DialogData {
   events: Event[];
@@ -62,7 +64,7 @@ export class ManageCollectionComponent implements OnInit {
     if (this.editMode) {
       this.collectionService.getCollectionById(this.currentId).subscribe(coll => {
         this.currentCollection = coll;
-        console.log(this.currentCollection);
+        // console.log(this.currentCollection);
 
         this.eventService.getEvents().subscribe(events => {
           for (const i in events) {
@@ -81,8 +83,8 @@ export class ManageCollectionComponent implements OnInit {
                 this.currentContents.push(posts[i]);
               }
             }
-            console.log(this.currentContents);
-            console.log(this.contents);
+            // console.log(this.currentContents);
+            // console.log(this.contents);
           })
         })
       })
@@ -120,6 +122,7 @@ export class ManageCollectionComponent implements OnInit {
     if (!this.editMode) {
       let newColl = {} as Collection;
       newColl = this.collectionForm.value;
+      console.log(this.addedPosts)
       if(this.addedPosts) {
         for (const i of this.addedPosts) {
           newColl.postContent.push(i.id);
@@ -216,6 +219,7 @@ export class DialogContentDialog implements OnInit{
   selection = new SelectionModel<any>(true, []);
   initialData = [];
   listData = [];
+
   constructor(public dialogRef: MatDialogRef<DialogContentDialog>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 

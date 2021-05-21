@@ -5,7 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {DataService} from '../services/data.service';
 import {PostActions} from '../store/actions/PostActions';
 import {NgRedux} from '@angular-redux/store';
-import {AppState} from '../store/Store';
+import {AppState, CollaborationState} from '../store/Store';
 import { Location } from '@angular/common'
 import { CollectionActions } from '../store/actions/CollectionActions';
 import {CommentActions} from '../store/actions/CommentActions';
@@ -14,6 +14,8 @@ import {UsersService} from '../services/users.service';
 import {VolunteerActions} from '../store/actions/VolunteerActions';
 import {CollaborationActions} from '../store/actions/CollaborationActions';
 import {MatDialog} from '@angular/material/dialog';
+import {CollaborationService} from '../services/collaboration.service';
+import base58 from 'base58-encode';
 
 @Component({
   selector: 'app-manage-post',
@@ -54,7 +56,8 @@ export class ManagePostComponent implements OnInit {
               private volunteerActions: VolunteerActions,
               private collabActions: CollaborationActions,
               private userService: UsersService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private collaborationService: CollaborationService) { }
 
   ngOnInit(): void {
     const id: string = this.route.snapshot.paramMap.get('myId');
@@ -88,11 +91,6 @@ export class ManagePostComponent implements OnInit {
         this.comments = res.comments;
       });
     }
-    // for (const i in this.selectedPost.comments) {
-    //   for (const j in this.comments) {
-    //     console.log(i[0], j[0]);
-    //   }
-    // }
 
     if (this.selectedPost === undefined) {
       this.selectedPost = new Post();
@@ -117,12 +115,27 @@ export class ManagePostComponent implements OnInit {
       this.selectedPost.likes = 0;
       this.selectedPost.comments = [this.emptyComment];
       this.selectedPost.state = state;
+      this.selectedPost.manualId = base58(this.selectedPost.title.length + 'ID');
       this.postActions.addPost(this.selectedPost);
+
+      const tempCollab = {
+        title: this.selectedPost.title,
+        userId: this.currentUser.id,
+        postId: this.selectedPost.manualId,
+        accepted: false
+      } as Collaboration
+      this.collaborationService.saveCollaboration(tempCollab).subscribe();
+
     } else {
+      console.log(this.postForm);
       const edits = ['title', 'text', 'media', 'collections', 'pinned'];
       for (const edit of edits) {
-        this.selectedPost[edit] = this.postForm.value[edit];
+        // console.log(this.postForm.value[edit]);
+        if(this.postForm.value[edit]) {
+          this.selectedPost[edit] = this.postForm.value[edit];
+        }
       }
+      console.log(this.selectedPost)
       this.selectedPost.state = state;
       this.postActions.updatePost(this.selectedPost);
     }

@@ -1,0 +1,16 @@
+<div class="dialog-container">
+  <h1 mat-dialog-title> Request room </h1>
+  <div mat-dialog-content>
+    <input matInput placeholder="Event title"/>
+    <input matInput placeholder="Start date"/>
+<!--    <input matInput placeholder="Week"/>-->
+    <input matInput placeholder="Room needed from"/>
+    <input matInput placeholder="Booking end time"/>
+    <input matInput placeholder="Preferred building"/>
+    <input matInput placeholder="Maximum expected number of participants"/>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Request room</button>
+  </div>
+</div>
