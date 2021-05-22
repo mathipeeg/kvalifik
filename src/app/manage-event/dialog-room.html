@@ -1,13 +1,42 @@
 <div class="dialog-container">
   <h1 mat-dialog-title> Request room </h1>
-  <div mat-dialog-content>
-    <input matInput placeholder="Event title"/>
-    <input matInput placeholder="Start date"/>
+  <div mat-dialog-content class="content">
+    <p>When you request a room an e-mail with the following information will be sent to <b>*lokaleadministartionen*</b> You will be notified via e-amil when a room has been confirmed for the event.</p>
+    <mat-form-field>
+      <mat-label>Event title</mat-label>
+      <input type="text" matInput placeholder="Event title"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Start date</mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
 <!--    <input matInput placeholder="Week"/>-->
-    <input matInput placeholder="Room needed from"/>
-    <input matInput placeholder="Booking end time"/>
-    <input matInput placeholder="Preferred building"/>
-    <input matInput placeholder="Maximum expected number of participants"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Room needed from</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let time of times" [value]="time" >{{time}}</mat-option>
+      </mat-select>
+      <input matInput placeholder="Room needed from"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Booking end time</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let time of endTimes" [value]="time" >{{time}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Preffered building</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let building of buildings" [value]="building" >{{building }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Maximum expected number of participants</mat-label>
+      <input matInput placeholder="Maximum expected number of participants"/>
+    </mat-form-field>
+
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancel</button>

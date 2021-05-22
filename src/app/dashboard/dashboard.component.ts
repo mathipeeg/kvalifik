@@ -11,6 +11,7 @@ import {UsersService} from '../services/users.service';
 })
 export class DashboardComponent implements OnInit {
 
+  idToken: string;
   posts = [] as Post[];
   collaborations = [] as Collaboration[];
   acceptedCollabs = [] as CollabPost[];
@@ -22,7 +23,7 @@ export class DashboardComponent implements OnInit {
               private userService: UsersService) { }
 
   ngOnInit(): void {
-    this.currentUser = this.userService.getUser;
+    this.idToken = sessionStorage.getItem('safeToken');
     // my temp user ID = EFZGmRz
     this.collaborationService.readCollaborations().subscribe(collaborations => {
       const tempCollabs = collaborations;

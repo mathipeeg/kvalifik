@@ -1,0 +1,13 @@
+@import '../../styles.scss';
+.dialog-container {
+  width: 40vw;
+
+  h1 {
+    color: $primary;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+}

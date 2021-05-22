@@ -20,10 +20,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class PostsComponent implements OnInit {
 
   public posts: Post[] = [];
-
+  idToken: string;
   displayedColumns: string[] = ['title', 'created', 'type', 'activity', 'status', 'edit'];
-  // public isHappy: boolean;
-  // birthday = new Date(1988, 3, 15);
   search: string = '';
 
   constructor(private router: Router,
@@ -34,6 +32,8 @@ export class PostsComponent implements OnInit {
               private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.idToken = sessionStorage.getItem('safeToken');
+
     const published: string = this.route.snapshot.paramMap.get('published');
     this.postActions.readPosts();
     if (published && published === 'true') {

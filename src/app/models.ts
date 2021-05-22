@@ -80,6 +80,7 @@ export class Volunteer {
   studyProgramme: string;
   startDate: Date;
   userType: string;
+  manualId: string;
 }
 
 export class StudyProgramme {
@@ -107,12 +108,13 @@ export class User {
   id;
   firstName: string;
   lastName: string;
+  coverPhoto?: string;
   role: string; // admin, student, moderator
+  referenceKey: string;
   username: string; // todo: is this necessary?
   password: string;
   email: string;
   profileImage?: string;
-  coverPhoto?: string;
   signupDate: Date;
   title?: string;
 }

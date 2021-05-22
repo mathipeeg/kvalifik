@@ -33,6 +33,7 @@ export class ManagePostComponent implements OnInit {
   comments: Comment[] = [];
   volunteers: Volunteer[] = [];
   collaborations: Collaboration[] = [];
+  idToken: string;
 
   emptyComment = {
     id: 0,
@@ -60,8 +61,11 @@ export class ManagePostComponent implements OnInit {
               private collaborationService: CollaborationService) { }
 
   ngOnInit(): void {
+    this.idToken = sessionStorage.getItem('safeToken');
+
     const id: string = this.route.snapshot.paramMap.get('myId');
-    this.currentUser = this.userService.getUser;
+    // this.currentUser = this.userService.getUser;
+
 
     if (id) {
       this.headerTitle = 'Edit Post';

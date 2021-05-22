@@ -36,17 +36,7 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.userActions.login(this.loginForm.value.username, this.loginForm.value.password);
-      this.router.navigate(['/posts']); // todo: dashboard
-      // let test = ;
+      this.router.navigate(['/']);
     }
-    // this.ngRedux.select(state => state.users).subscribe(res => {
-    //   this.user = res.loggedInUser;
-    //   console.log(this.user);
-    //   // console.log(this.posts);
-    // });
-    // console.log(this.userActions.test() + '<<-');
-    // if(this.userActions.logged) {
-    //   console.log('YOURE IN');
-    // }
   }
 }

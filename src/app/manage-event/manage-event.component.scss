@@ -17,7 +17,11 @@
     }
   }
 
-  .form-container {
+  .form-container-room {
+    margin-top: $innerMargin;
+  }
+
+  .form-container, .form-container-room {
     display: flex;
     background: white;
     border-radius: 15px;
@@ -102,6 +106,38 @@
       padding: 10px;
       display: flex;
       flex-direction: column;
+
+      .room-top-div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .current-room {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+        font-family: "Microsoft JhengHei";
+        margin: $innerMargin 0 5px 0;
+      }
+
+      .cancel-btn {
+        border: 2px solid darkred;
+        color: darkred;
+      }
+
+      .photo-div {
+        margin-top: $innerMargin;
+        width: 130px;
+        height: 80px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
 
       mat-label {
         padding-right: 10px;

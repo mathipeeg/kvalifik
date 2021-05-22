@@ -61,7 +61,6 @@ export class EventService extends ApiService {
   }
 
   deleteSchedule(scheduleId: string, eventId: string): Observable<any> {
-    // const url = 'https://kvalifik-ccc4d-default-rtdb.europe-west1.firebasedatabase.app/collections/' + coll.id + '.json';
     return this.httpClient.delete(`${this.baseUrl}/${eventId}/schedule/${scheduleId}.json`)
       .pipe(
         catchError(this.handleError(`post url`, undefined))

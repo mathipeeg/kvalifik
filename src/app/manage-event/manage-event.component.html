@@ -67,7 +67,7 @@
       <div class="field-div">
         <mat-form-field>
           <mat-label>Photo</mat-label>
-          <div *ngIf="editMode"><img alt="event-photo" src="{{currentEvent.photo}}"></div>
+          <div *ngIf="editMode" class="photo-div"><img alt="event-photo" src="{{currentEvent.photo}}"></div>
           <input *ngIf="editMode" matInput type="text" [placeholder]="currentEvent.photo" formControlName="photo">
           <input *ngIf="!editMode" matInput type="text" placeholder="Title" formControlName="photo">
         </mat-form-field>
@@ -117,13 +117,16 @@
     </form>
   </div>
 
-  <div class="form-container">
+  <div class="form-container-room">
     <form [formGroup]="eventForm">
       <div class="field-div">
-        <mat-label>Room</mat-label>
-        <button mat-raised-button class="request-btn" (click)="openRoomDialog()">Request room</button>
-        <div *ngIf="currentEvent.room">
+        <div class="room-top-div">
+          <mat-label>Room</mat-label>
+          <button mat-raised-button class="request-btn" (click)="openRoomDialog()">Request room</button>
+        </div>
+        <div class="current-room" *ngIf="currentEvent.room">
           {{currentEvent.room}}
+          <button mat-raised-button class="cancel-btn" (click)="cancelRoom()">Cancel</button>
         </div>
       </div>
     </form>

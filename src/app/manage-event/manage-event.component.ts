@@ -173,8 +173,13 @@ export class ManageEventComponent implements OnInit {
 @Component({
   selector: 'dialog-room',
   templateUrl: 'dialog-room.html',
+  styleUrls: ['dialog-room.scss']
 })
 export class DialogRoom {
+
+  times = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+  endTimes = ['11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'];
+  buildings = ['Building 1', 'Building 2', 'Building 3', 'Building 4'];
 
   constructor(public dialogRef: MatDialogRef<DialogContentDialog>) {
   }

@@ -16,7 +16,6 @@ export class UserActions {
   static SIGNED_UP: string = 'SIGNED_UP';
   static LOGGED_IN: string = 'LOGGED_IN';
   static SAVE_SOMETHING: string = 'SAVE_SOMETHING';
-  // logged: boolean | undefined;
   currentUser: User;
 
 
@@ -28,18 +27,18 @@ export class UserActions {
 
   login(username: string, password: string) { // todo: check if logged in fucking hell
       this.authService.login(username, password).subscribe((result: any) => {
-        // if(!result){
-        //   console.log('poop')
-        //   this.logged = false;
-        // }
+
         if (result) {
-          // console.log('not poop');
           const user: User = {
             id: result.localId,
-            username, email: username,
+            username,
+            email: username,
             signupDate: undefined
           } as User;
           this.currentUser = user;
+
+          const googleToken = btoa(result.idToken);
+          sessionStorage.setItem('googleToken', JSON.stringify(googleToken));
 
           this.authService.getUserInfo(result.idToken).subscribe((response: any) => {
             user.signupDate = new Date(Number(response.users[0].createdAt));

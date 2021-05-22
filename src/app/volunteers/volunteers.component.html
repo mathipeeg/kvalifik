@@ -1,1 +1,6 @@
 <p>volunteers works!</p>
+<div *ngIf="volunteers">
+  <div *ngFor="let v of volunteers">
+    <div>{{v.firstName}} {{v.lastName}}</div>
+  </div>
+</div>
