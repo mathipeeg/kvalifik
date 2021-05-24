@@ -25,7 +25,7 @@ export class UserActions {
   //   });
   // }
 
-  login(username: string, password: string) { // todo: check if logged in fucking hell
+  login(username: string, password: string) {
       this.authService.login(username, password).subscribe((result: any) => {
 
         if (result) {

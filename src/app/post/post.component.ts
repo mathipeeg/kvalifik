@@ -12,6 +12,7 @@ import {CollaborationService} from '../services/collaboration.service';
 import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../store/Store';
 import {UsersService} from '../services/users.service';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-post',
@@ -27,7 +28,7 @@ export class PostComponent implements OnInit {
   collections = [] as Collection[];
   comments = [] as Comment[];
   volunteers = [] as Volunteer[];
-  test = [] as Comment[];
+  idToken: string;
 
   constructor(private route: ActivatedRoute,
               private postService: PostsService,
@@ -36,14 +37,24 @@ export class PostComponent implements OnInit {
               private volunteerActions: VolunteerActions,
               private collabService: CollaborationService,
               private ngRedux: NgRedux<AppState>,
+              private authService: AuthService,
               private router: Router,
               private userService: UsersService,
               private postActions: PostActions) { }
 
   ngOnInit(): void {
-    console.log('LOADED');
+    this.idToken = sessionStorage.getItem('googleToken');
+    if(this.idToken) {
+      this.authService.getUserInfo(atob(JSON.parse(this.idToken))).subscribe(googleUser => {
+        const localId = googleUser['users'][0].localId;
+        this.userService.getUserByReferenceKey(localId).subscribe(user => {
+          for (const userId in user) {
+            this.currentUser = user[userId];
+          }
+        })
+      });
+    }
     const id: string = this.route.snapshot.paramMap.get('postId');
-    this.currentUser = this.userService.getUser;
 
     this.collectionActions.readCollections();
     this.commentsActions.readComments();

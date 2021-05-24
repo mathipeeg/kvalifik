@@ -20,6 +20,10 @@
       margin-left: calc(#{$innerMargin} / 3);
     }
 
+    .hiddenInvitations, .hiddenAccepted {
+      display: none;
+    }
+
     .invitations, .accepted {
       background-color: #f3f3f3;
       border-radius: 15px;

@@ -1,0 +1,82 @@
+@import '../../styles.scss';
+
+mat-toolbar {
+  padding: 0 !important;
+}
+
+.header {
+  padding: 10px $outerMargin 10px $outerMargin;
+  background: white;
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  font-size: 15px;
+  font-family: "Microsoft JhengHei";
+  font-weight: bold;
+  color: $primary;
+  height: $headerheight;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  z-index: 2;
+
+    .menu-btn {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-size: 18px;
+      color: $primary;
+
+      span {
+        font-size: 25px;
+      }
+
+  }
+
+  .empty-div {
+    display: flex;
+    //flex-grow: 1;
+  }
+  .left-div {
+    //flex-grow: 2;
+    //width: 100vw;
+    display: flex;
+    //justify-content: center;
+  }
+
+  .right-div {
+    //flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    //justify-content: flex-end;
+  }
+
+  mat-icon {
+    color: $primary;
+  }
+
+  img {
+    height: $headerheight / 1.1;
+  }
+}
+
+.mat-button-wrapper {
+  //display: flex;
+  //align-items: center;
+  //flex-direction: row;
+}
+
+.button-div {
+  display: flex;
+  align-items: center;
+
+  #title, #icon {
+    display: flex;
+    align-items: center;
+  }
+
+  #title {
+    margin-right: $innerMargin;
+  }
+}

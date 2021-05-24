@@ -1,41 +1,10 @@
 @import'../styles.scss';
 
-$headerheight: 3em;
 
 .background-div {
   background-color: #f3f3f3;
   min-height: 100vh;
   max-height: fit-content;
-
-  mat-toolbar {
-    padding: 0 !important;
-  }
-
-  .header {
-    padding: 10px $outerMargin 10px $outerMargin;
-    background: white;
-    /* offset-x | offset-y | blur-radius | spread-radius | color */
-    box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    font-size: 15px;
-    font-family: "Microsoft JhengHei";
-    font-weight: bold;
-    color: $primary;
-    height: $headerheight;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-    z-index: 2;
-
-    mat-icon {
-      color: $primary;
-    }
-
-    img {
-      height: $headerheight / 1.1;
-    }
-  }
 
   .nav-link {
     display: flex;

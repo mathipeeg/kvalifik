@@ -65,7 +65,7 @@ export class Post {
   collections: string[];
   comments: Comment[];
   pinned: boolean;
-  state: string; // Todo: look into enums
+  state: string;
   likes: number;
   responsible: string[];
   collaboration: string;
@@ -111,10 +111,12 @@ export class User {
   coverPhoto?: string;
   role: string; // admin, student, moderator
   referenceKey: string;
-  username: string; // todo: is this necessary?
+  username: string;
   password: string;
   email: string;
   profileImage?: string;
   signupDate: Date;
   title?: string;
+  about: string;
+  contactPerson: string;
 }
