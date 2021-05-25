@@ -23,11 +23,9 @@ export function postsReducer(state: PostState = INITIAL_STATE, action) {
         return tassign(state, {posts: newArray});
 
      case PostActions.DELETE_POST:
-       console.log('test');
        const tempArray = [...state.posts]; // copy of the array.
        const i = state.posts.findIndex(post => post.id === action.payload.id);
        tempArray.splice(i, 1);
-       console.log(tempArray);
        return tassign(state, {posts: tempArray});
 
        // state.posts.splice(action.payload, 1);

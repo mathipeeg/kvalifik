@@ -3,7 +3,7 @@
     <h1>Collaboration</h1>
     <div>
       <h2>Invitations ({{invitedCollabs.length}})</h2>
-      <div class="invitations" *ngFor="let invite of invitedCollabs">
+      <div [ngClass]="{'hiddenInvitations': i >= 2, 'invitations': i < 2}" *ngFor="let invite of invitedCollabs; let i = index" [attr.data-index]="i">
         <div>
           <div class="postTitle">Post ● {{invite.postTitle}}</div>
           <div class="title-date"><div class="title">{{invite.title}} </div><p>●</p><div class="date">{{invite.postDate | date}}</div></div>
@@ -15,13 +15,13 @@
         </div>
       </div>
       <div class="show-all">
-        <button mat-raised-button class="show-all-btn">Show all</button>
+        <button mat-raised-button class="show-all-btn" (click)="showAll('invitations')">Show all</button>
       </div>
     </div>
 
     <div>
       <h2>Accepted collaborations ({{acceptedCollabs.length}})</h2>
-      <div class="accepted" *ngFor="let invite of acceptedCollabs">
+      <div [ngClass]="{'hiddenAccepted': i >= 2, 'accepted': i < 2}" *ngFor="let invite of acceptedCollabs; let i = index" [attr.data-index]="i">
         <div>
           <div class="postTitle">Post ● {{invite.postTitle}}</div>
           <div class="title-date"><div class="title">{{invite.title}} </div><p>●</p><div class="date">{{invite.postDate | date}}</div></div>
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="show-all">
-        <button mat-raised-button class="show-all-btn">Show all</button> <!-- todo: this -->
+        <button mat-raised-button class="show-all-btn" (click)="showAll('accepted')">Show all</button>
       </div>
     </div>
   </div>

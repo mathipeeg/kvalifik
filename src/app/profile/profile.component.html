@@ -1,44 +1,67 @@
-<div class="container" *ngIf="user">
-  <div class="user-container">
+<div class="container">
+  <div class="user-container" *ngIf="user">
     <h1>{{user.title}}</h1>
-    <div>
-      <div class="logo-div">
-        <div><img alt="profile-photo" src="{{user.profileImage}}"></div>
+<!--    <form [formGroup]="uploadForm" (ngSubmit)="upload()">-->
+      <div class="photos-div">
+        <div>
+          <mat-label>Logo</mat-label>
+          <div class="img-div">
+            <img alt="profile-photo" src="{{user.profileImage}}">
+          </div>
+<!--            <input type="file" class="form-control" id="file" formControlName="file" (change)="onImageChange($event)">-->
+          <button mat-raised-button>Upload photo</button>
+        </div>
+        <div>
+          <mat-label>Cover photo</mat-label>
+          <div class="cover-photo-div">
+            <img alt="cover-photo" src="{{user.coverPhoto}}">
+          </div>
+          <button mat-raised-button>Upload photo</button>
+        </div>
       </div>
-      <div>
-        <div><img alt="cover-photo" src="{{user.coverPhoto}}"></div>
+      <div class="about-div">
+        <h2>About</h2>
+        <p>Write a header and a short text about the organisation. You can add more headers if you need to.</p>
+        <mat-form-field>
+          <input *ngIf="user" matInput placeholder="{{user.title}}">
+          <input *ngIf="!user" matInput placeholder="{{user.title}}">
+        </mat-form-field>
+        <mat-form-field>
+          <textarea cols="50" rows="10" *ngIf="user" matInput placeholder="About" value="{{user.about}}"></textarea>
+          <textarea cols="50" rows="10" *ngIf="!user" matInput placeholder="About"></textarea>
+        </mat-form-field>
       </div>
-<!--      <div class="invitations" *ngFor="let invite of invitedCollabs">-->
-<!--        <div>-->
-<!--          <div class="postTitle">Post ● {{invite.postTitle}}</div>-->
-<!--          <div class="title-date"><div class="title">{{invite.title}} </div><p>●</p><div class="date">{{invite.postDate | date}}</div></div>-->
-<!--          <div class="description">{{invite.postDescription}}</div>-->
-<!--        </div>-->
-<!--        <div class="actions">-->
-<!--          <button mat-raised-button id="accept-btn" (click)="accept(invite)">Accept</button>-->
-<!--          <button mat-raised-button id="decline-btn" (click)="remove(invite)">Decline</button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="show-all">-->
-<!--        <button mat-raised-button class="show-all-btn">Show all</button>-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    <div>-->
-<!--      <h2>Accepted collaborations ({{acceptedCollabs.length}})</h2>-->
-<!--      <div class="accepted" *ngFor="let invite of acceptedCollabs">-->
-<!--        <div>-->
-<!--          <div class="postTitle">Post ● {{invite.postTitle}}</div>-->
-<!--          <div class="title-date"><div class="title">{{invite.title}} </div><p>●</p><div class="date">{{invite.postDate | date}}</div></div>-->
-<!--          <div class="description">{{invite.postDescription}}</div>-->
-<!--        </div>-->
-<!--        <div class="actions">-->
-<!--          <button mat-raised-button id="remove-btn" (click)="remove(invite)">Remove</button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="show-all">-->
-<!--        <button mat-raised-button class="show-all-btn">Show all</button> &lt;!&ndash; todo: this &ndash;&gt;-->
-<!--      </div>-->
-    </div>
+      <div id="about-div-hidden">
+        <mat-form-field>
+          <input *ngIf="user" matInput placeholder="{{user.title}}">
+          <input *ngIf="!user" matInput placeholder="{{user.title}}">
+        </mat-form-field>
+        <mat-form-field>
+          <textarea cols="50" rows="10" *ngIf="user" matInput placeholder="About"></textarea>
+          <textarea cols="50" rows="10" *ngIf="!user" matInput placeholder="About"></textarea>
+        </mat-form-field>
+      </div>
+    <button mat-raised-button class="description-block-btn" (click)="newBlock()">New Description Block</button> <!--todo: additional about?-->
+    <div class="contact-div">
+          <h2>Contact information</h2>
+        <mat-label>E-mail</mat-label>
+        <mat-form-field>
+          <input matInput *ngIf="user" placeholder="{{user.email}}">
+          <input matInput *ngIf="!user" placeholder="E-mail">
+        </mat-form-field>
+        <mat-label>Contact person</mat-label>
+        <mat-form-field>
+          <input matInput *ngIf="user" placeholder="{{user.contactPerson}}">
+          <input matInput *ngIf="!user" placeholder="Contact Person">
+        </mat-form-field>
+      </div>
+      <div class="bottom-btns">
+        <button mat-raised-button class="preview">Preview</button>
+        <button mat-raised-button class="save" type="submit">Save & publish profile</button>
+      </div>
+<!--    </form>-->
+  </div>
+  <div *ngIf="!user">
+    <div class="sorry">Sorry, you have to be logged in to see your profile.</div>
   </div>
 </div>

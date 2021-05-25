@@ -33,7 +33,7 @@
     <button mat-stroked-button color="primary" (click)="editPost(currentPost.id)" class="e2e-edit">Edit</button>
   </mat-card-actions>
 
-  <button *ngIf="currentUser" mat-raised-button (click)="addComment()">Add comment</button> <!--todo: ONLY IF LOGGED IN-->
+  <button *ngIf="currentUser" mat-raised-button (click)="addComment()">Add comment</button>
   <div #commentText style="display: none">
     <textarea #commentInput placeholder="This post deserves some love...." (keypress)="testChange($event, commentInput.value)"></textarea>
     <p>Send on Enter</p>

@@ -28,7 +28,7 @@ export class PostsService extends ApiService {
   updatePost(post: Post): Observable<any> {
     const token = this.ngRedux.getState().users.token;
     const url = 'https://kvalifik-ccc4d-default-rtdb.europe-west1.firebasedatabase.app/posts/' + post.id + '.json';
-    // ?auth=' + token; //todo: find out how
+    // ?auth=' + token;
 
     return this.http.patch(url, post, this.getHttpOptions());
     // "https://<DATABASE_NAME>.firebaseio.com/users/ada/name.json?auth=<ID_TOKEN>"

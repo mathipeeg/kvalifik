@@ -14,7 +14,7 @@ export class SidenavComponent implements OnInit {
   }
 
   profile() {
-    this.router.navigate(['/profile']) // todo: SEE IF LOGGED IN
+    this.router.navigate(['/profile'])
   }
 
 }

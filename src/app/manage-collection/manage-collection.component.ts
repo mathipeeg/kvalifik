@@ -129,7 +129,7 @@ export class ManageCollectionComponent implements OnInit {
         }
       }
       if (this.addedEvents) {
-        for (const i of this.addedEvents) { // todo: id
+        for (const i of this.addedEvents) {
           newColl.eventContent.push(i.title);
         }
       }
@@ -154,7 +154,7 @@ export class ManageCollectionComponent implements OnInit {
         }
       }
       if(this.addedEvents) {
-        for (const i of this.addedEvents) { // todo: id
+        for (const i of this.addedEvents) {
           if (!this.currentCollection.eventContent.includes('sXUHvUSL')) {
             this.currentCollection.eventContent.push('sXUHvUSL');
           }
@@ -180,7 +180,7 @@ export class ManageCollectionComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogContentDialog, {
       data: {
         posts: this.contentPosts,
-        events: this.contentEvents, // todo: only show posts and events that aren't added
+        events: this.contentEvents,
         choice: content,
         edit: this.editMode}
     });
