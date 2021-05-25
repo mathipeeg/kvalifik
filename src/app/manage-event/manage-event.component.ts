@@ -54,7 +54,7 @@ export class ManageEventComponent implements OnInit {
     this.eventService.getEventById(this.currentId).subscribe(event => {
       if (event) {
         this.currentEvent = event;
-        for (const id in this.currentEvent.schedule) {
+        for (const id in this.currentEvent.schedule) { // todo: look at this, can this be a query instead?
           this.currentEvent.schedule[id].manualId = id;
           this.schedule.push(this.currentEvent.schedule[id]); // todo: TILFØJ MANUALID GODDAMIT FUCKING FIREBASE I DIE
         }

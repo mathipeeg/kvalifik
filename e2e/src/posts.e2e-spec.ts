@@ -44,7 +44,7 @@ describe('Posts section', () => {
 
         const postsAfterAdding: number = await (await element.all(by.tagName('mat-card'))).length;
 
-        expect(postsAfterAdding).toEqual(postsBeforeAdding + 1); // try to make more robust test-code
+        expect(postsAfterAdding).toEqual(postsBe foreAdding + 1); // try to make more robust test-code
         // instead of hardcoding numbers, like 5 and 6.
         // expect(postsBeforeAdding.length).toEqual(1);
 
