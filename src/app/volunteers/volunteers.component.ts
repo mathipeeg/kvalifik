@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {VolunteerService} from '../services/volunteer.service';
-import {Volunteer} from '../models';
+import {Event, Volunteer} from '../models';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-volunteers',
@@ -10,6 +11,12 @@ import {Volunteer} from '../models';
 export class VolunteersComponent implements OnInit {
 
   volunteers = [] as Volunteer[];
+  // currentEvents = [] as Event[];
+  // pastEvents = [] as Event[];
+  displayedColumns: string[] = ['profilePic', 'name', 'userType', 'groups', 'volunteerSince', 'info'];
+  // pastDataSource = new MatTableDataSource<any>();
+  dataSource = new MatTableDataSource<any>();
+
   constructor(private volunteerService: VolunteerService) { }
 
   ngOnInit(): void {
@@ -19,6 +26,7 @@ export class VolunteersComponent implements OnInit {
         tempVol.manualId = id;
         this.volunteers.push(tempVol);
       }
+      this.dataSource.data = this.volunteers;
       console.log(this.volunteers)
     })
   }

@@ -32,7 +32,8 @@ export class UsersService extends ApiService {
   }
 
   getUserByReferenceKey(refKey: string) {
-    const url = 'https://kvalifik-ccc4d-default-rtdb.europe-west1.firebasedatabase.app/users.json?orderBy="referenceKey"&equalTo="' +refKey + '"&print="pretty"';
+    const url = 'https://kvalifik-ccc4d-default-rtdb.europe-west1.firebasedatabase.app/users.json?orderBy="referenceKey"&equalTo="' +
+      refKey + '"&print="pretty"';
     return timer(0, 600000)
       .pipe(
         switchMap(() => this.http.get<User>(url)),

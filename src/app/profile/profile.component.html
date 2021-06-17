@@ -33,10 +33,6 @@
       </div>
       <div id="about-div-hidden">
         <mat-form-field>
-          <input *ngIf="user" matInput placeholder="{{user.title}}">
-          <input *ngIf="!user" matInput placeholder="{{user.title}}">
-        </mat-form-field>
-        <mat-form-field>
           <textarea cols="50" rows="10" *ngIf="user" matInput placeholder="About"></textarea>
           <textarea cols="50" rows="10" *ngIf="!user" matInput placeholder="About"></textarea>
         </mat-form-field>
@@ -56,8 +52,8 @@
         </mat-form-field>
       </div>
       <div class="bottom-btns">
-        <button mat-raised-button class="preview">Preview</button>
-        <button mat-raised-button class="save" type="submit">Save & publish profile</button>
+        <button mat-raised-button class="preview"><div class="btn-content">Preview <span class="material-icons-outlined">visibility</span></div></button>
+        <button mat-raised-button class="save" type="submit"><div class="btn-content">Save & publish profile <span class="material-icons-outlined">publish</span></div></button>
       </div>
 <!--    </form>-->
   </div>

@@ -77,7 +77,7 @@ import {MatMenuModule, MatMenuTrigger} from '@angular/material/menu';
     ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, AppRoutingModule,
-    MatInputModule, MatCardModule, MatGridListModule, MatListModule, MatTableModule, MatSelectModule,
+    MatInputModule, MatCardModule, MatGridListModule, MatTableModule, MatSelectModule,
     MatSlideToggleModule, MatDialogModule, MatSnackBarModule, DragDropModule, MatCheckboxModule,
     MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatMenuModule
   ],

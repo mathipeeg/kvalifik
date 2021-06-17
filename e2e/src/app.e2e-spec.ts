@@ -7,19 +7,20 @@ describe('workspace-project App', () => {
   beforeEach(() => {
     page = new AppPage();
   });
-  
-  // it('should display welcome message', async () => {
+
+  it('should display dashboard title', async () => {
+    await page.navigateTo();
+    expect(await page.getDashboardText()).toEqual('Collaboration');
+  });
+
+  // it('do something with router link button', async () => {
   //   await page.navigateTo();
-  //   expect(await page.getTitleText()).toEqual('kvalifik app is running!');
+  //   expect(await page.getButtonByRouterLink()).toEqual('x');
   // });
 
-  
 
-  afterEach(async () => {
-    // Assert that there are no errors emitted from the browser
-    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
+  it('should display posts button', async () => {
+    await page.navigateTo();
+    expect(await page.getPostsButtonText()).toEqual('library_books\nPosts');
   });
 });

@@ -140,6 +140,7 @@ export class ManageEventComponent implements OnInit {
 
   removeSchedule(id) {
     this.eventService.deleteSchedule(id, this.currentEvent.manualId).subscribe();
+    // this.onSubmitPost(this.currentEvent.status);
   }
 
   onEnter() {
@@ -150,6 +151,7 @@ export class ManageEventComponent implements OnInit {
       } as EventSchedule
       this.eventService.addSchedule(newSchedule, this.currentEvent.manualId).subscribe();
     }
+    // this.onSubmitPost(this.currentEvent.status);
   }
 
   openRoomDialog() {

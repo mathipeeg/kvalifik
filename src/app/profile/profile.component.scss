@@ -13,12 +13,12 @@
     background-color: white;
     border-radius: 15px;
     padding: $innerMargin;
-    width: 55vw;
+    width: fit-content;
 
     mat-label {
       color: black;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 14px;
     }
 
     h1 {
@@ -53,6 +53,7 @@
         width: 200px;
         overflow: hidden;
         margin-top: $innerMargin;
+        margin-right: $innerMargin;
         border-radius: 5px;
 
         img {
@@ -113,17 +114,27 @@
     .bottom-btns {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: flex-start;
 
       button {
         display: flex;
         align-items: center;
+        font-size: 16px;
         width: calc(calc(50vw/2) - calc(#{$innerMargin} * 4));
+
+        .btn-content {
+          width: calc(calc(50vw/2) - calc(#{$innerMargin} * 6));
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
       }
 
       .preview {
         border: 2px solid #131313;
         color: #131313;
+        margin-right: $innerMargin;
       }
       .save {
         background-color: forestgreen;;

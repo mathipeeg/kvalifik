@@ -1,3 +1,211 @@
-img {
-  width: 5rem;
+@import'../../styles.scss';
+
+.container {
+  margin: $innerMargin;
+
+  .post-container {
+    background-color: white;
+    border-radius: 15px;
+    padding: $innerMargin;
+
+    .img-div {
+      width: 350px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 5px;
+      margin-bottom: $innerMargin;
+
+      img {
+        height: auto;
+        width: 100%;
+        border-radius: 5px;
+      }
+    }
+
+    .top-div {
+      display: flex;
+      flex-direction: column;
+
+      .title-date {
+        display: flex;
+        flex-direction: column;
+
+        .date-likes {
+          display: flex;
+          flex-direction: row;
+          font-size: 14px;
+          color: grey;
+          margin-top: $innerMargin;
+          margin-bottom: $innerMargin;
+          align-items: center;
+
+          .likes {
+            display: flex;
+            align-items: center;
+          }
+          span {
+            margin-left: $innerMargin;
+            margin-right: calc(#{$innerMargin} / 3);
+            font-size: 18px;
+          }
+
+          span:hover {
+            cursor: pointer;
+          }
+        }
+        mat-card-title {
+          color: $primary;
+        }
+      }
+    }
+
+    .collab-div, .collection-div, .responsible-div {
+      margin-top: $innerMargin;
+    }
+
+    .text-div, .collab-div, .collection-div, .responsible-div {
+      width: 75%;
+      border-radius: 5px;
+      padding: $innerMargin;
+      //margin: $innerMargin;
+      background-color: #eeeeee;
+      font-family: "Microsoft JhengHei UI";
+
+      mat-label {
+        color: $primary;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: Tahoma;
+      }
+    }
+
+    .edit-btn, .add-comment-btn {
+      margin: $innerMargin $innerMargin $innerMargin 0;
+    }
+
+    .edit-btn {
+      border: 2px solid $primary;
+      color: $primary;
+      font-size: 14px;
+      min-width: 60px;
+      line-height: 28px;
+    }
+
+    .add-comment-btn {
+      border: 2px solid forestgreen;
+      color: forestgreen;
+      font-size: 14px;
+      min-width: 60px;
+      line-height: 28px;
+    }
+
+    .add-comment {
+      margin-bottom: $innerMargin;
+      display: flex;
+      flex-direction: column;
+      width: 75%;
+
+      p {
+        color: grey;
+        font-size: 12px;
+      }
+    }
+
+    .comment-card {
+      background-color: #eeeeee;
+      width: 75%;
+      border-radius: 5px;
+      padding: $innerMargin;
+
+      mat-card-subtitle {
+        color: $primary;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: Tahoma;
+      }
+
+      .comment-div {
+        display: flex;
+        flex-direction: column;
+        margin-top: $innerMargin;
+        //border: 2px solid darkgrey;
+        //border-radius: 5px;
+
+        .top-comment-div {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          font-family: "Microsoft JhengHei UI";
+          color: #969696;
+          font-size: 13px;
+          justify-content: space-between;
+
+          .mid-div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .comment-img-div {
+              height: 30px;
+              width: 30px;
+              overflow: hidden;
+              border-radius: 100px;
+              margin-right: $innerMargin;
+
+              img {
+                //border-radius: 100px;
+                height: 100%;
+                width: auto;
+              }
+            }
+          }
+
+          .delete-comment-div {
+            //width: 75%;
+            display: flex;
+            //justify-content: flex-end;
+
+            .delete-comment {
+              color: #626262;
+            }
+
+            .delete-comment:hover {
+              cursor: pointer;
+            }
+          }
+        }
+
+        .text {
+          margin-top: 0;
+          font-family: "Microsoft JhengHei UI";
+          font-size: 15px;
+        }
+
+        .bottom-comment-div {
+          display: flex;
+          flex-direction: row;
+          font-size: 10px;
+          align-items: center;
+
+          .comment-likes {
+            display: flex;
+            align-items: center;
+
+            span:hover {
+              cursor: pointer;
+            }
+            span {
+              margin: 0 5px 0 $innerMargin;
+              font-size: 13px;
+            }
+          }
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+
+    }
+  }
 }

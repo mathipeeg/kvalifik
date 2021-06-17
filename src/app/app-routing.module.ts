@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChatsComponent } from './chats/chats.component';
+// import { ChatsComponent } from './chats/chats.component';
 import { EventsComponent } from './events/events.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -13,6 +13,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {PostComponent} from './post/post.component';
 import {ManageCollectionComponent} from './manage-collection/manage-collection.component';
 import {ManageEventComponent} from './manage-event/manage-event.component';
+import {ChatsComponent} from './chats/chats.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
