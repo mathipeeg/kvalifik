@@ -18,16 +18,16 @@ describe('Posts section', () => {
 
         await element.all(by.css('.e2e-edit')).first().click();
 
-        expect(await element(by.css('h3')).getText()).toEqual("Edit Post");
+        expect(await element(by.css('h3')).getText()).toEqual('Edit Post');
     });
 
     it('Navigate to the new post page', async() => {
         // code here to test...
-        await element(by.css(".e2e-posts")).click();
+        await element(by.css('.e2e-posts')).click();
 
         await element(by.id('newPostBtn')).click();
 
-        expect(await element(by.css("h3")).getText()).toEqual("Create New Post");
+        expect(await element(by.css('h3')).getText()).toEqual('Create New Post');
     });
 
     it('Create new post', async() => {
