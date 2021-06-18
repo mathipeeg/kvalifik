@@ -5,6 +5,10 @@ export class AppPage {
     return browser.get(browser.baseUrl);
   }
 
+  async navigateToPosts() {
+    await element(by.css('.e2e-posts')).click();
+  }
+
   async getDashboardText(): Promise<string> {
     return element(by.css('app-dashboard h1')).getText();
   }
@@ -15,10 +19,6 @@ export class AppPage {
 
   async getPostsButtonText(): Promise<string> {
     return element(by.css('.e2e-posts')).getText();
-  }
-
-  async navigateToPosts() {
-    await element(by.css('.e2e-posts')).click();
   }
 
   async clickNewPostButton() {
@@ -33,7 +33,7 @@ export class AppPage {
     await element(by.id('delete-btn')).click();
   }
 
-  async getAmountOfPosts() {
-    return element.all(by.css('.edit-button'));
+  async clickAddComment() {
+    await element(by.css('.add-comment-btn')).click();
   }
 }

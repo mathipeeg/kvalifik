@@ -38,7 +38,7 @@
     <button class="add-comment-btn" *ngIf="currentUser" mat-raised-button (click)="addComment()">Add comment</button>
     <div #commentText class="add-comment" style="display: none">
       <mat-form-field>
-        <textarea cols="5" rows="5" matInput #commentInput placeholder="Add your comment" (keypress)="testChange($event, commentInput.value)"></textarea>
+        <textarea id="e2e-comment" cols="5" rows="5" matInput #commentInput placeholder="Add your comment" (keypress)="testChange($event, commentInput.value)"></textarea>
       </mat-form-field>
       <p>Send on Enter</p>
     </div>
