@@ -69,7 +69,7 @@ export class Post {
   likes: number;
   responsible: string[];
   collaboration: string;
-  manualId: string;
+  manualId?: string;
   mediaType?: string;
 }
 

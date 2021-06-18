@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   user: User | undefined;
   isUserLoggedIn: boolean;
   title: string;
+  headerTitle = ' ';
 
   constructor(private authService: AuthService,
               private userService: UsersService,
@@ -37,6 +38,7 @@ export class HeaderComponent implements OnInit {
         this.userService.getUserByReferenceKey(localId).subscribe(user => {
           for (const id in user) {
             this.user = user[id];
+            this.headerTitle = this.user.title;
           }
         });
       });

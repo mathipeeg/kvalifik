@@ -32,6 +32,7 @@
     "angular-mat-datepicker": "0.0.2",
     "angular-material-inputs": "^0.1.0",
     "base58-encode": "^0.2.0",
+    "ngrx-store-freeze": "^0.2.4",
     "redux": "^4.0.1",
     "rxjs": "~6.6.0",
     "tassign": "^1.0.0",
