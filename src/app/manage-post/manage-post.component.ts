@@ -92,7 +92,7 @@ export class ManagePostComponent implements OnInit {
     if(this.editMode) {
       this.commentActions.readComments();
       this.ngRedux.select(state => state.comments).subscribe(res => { // holder øje med state af posts og får dem fra select()
-        this.comments = res.comments;
+        this.comments = res.comments; // todo: do a query instead uwu
       });
     }
 

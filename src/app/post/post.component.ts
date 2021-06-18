@@ -78,6 +78,7 @@ export class PostComponent implements OnInit {
           for (const j of this.currentPost.comments) {
             if(i.manualId === j.manualId) {
               if(!this.comments.includes(i)) {
+                console.log(i);
                 this.comments.push(i);
               }
             }
@@ -151,8 +152,7 @@ export class PostComponent implements OnInit {
     if (key === 13) {
       const newComment = {} as Comment;
       const newCommentUser = {} as CommentUser;
-      // newCommentUser.profilePhoto = this.currentUser.profileImage;
-      newCommentUser.profilePhoto = 'profileImage';
+      newCommentUser.profilePhoto = this.currentUser.profileImage;
       newCommentUser.name = this.currentUser.username.split('@')[0]; // todo: have this linked to database with names just cba
       newCommentUser.id = this.currentUser.id;
 

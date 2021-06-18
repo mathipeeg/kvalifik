@@ -14,7 +14,7 @@ exports.config = {
   ],
   multiCapabilities: [
     {'browserName': 'chrome'},
-    {'browserName': 'firefox'},
+    // {'browserName': 'firefox'},
   ],
   directConnect: true,
   SELENIUM_PROMISE_MANAGER: false,

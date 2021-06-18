@@ -54,7 +54,7 @@ export class ManageEventComponent implements OnInit {
     this.eventService.getEventById(this.currentId).subscribe(event => {
       if (event) {
         this.currentEvent = event;
-        for (const id in this.currentEvent.schedule) {
+        for (const id in this.currentEvent.schedule) { // todo: look at this, can this be a query instead?
           this.currentEvent.schedule[id].manualId = id;
           this.schedule.push(this.currentEvent.schedule[id]);
           console.log(this.schedule);
@@ -98,7 +98,7 @@ export class ManageEventComponent implements OnInit {
     this.location.back();
   }
 
-  onSubmitPost(state) {
+    onSubmitPost(state) {
     if (this.editMode) {
       console.log(this.currentEvent.startDate)
       const edits = ['title', 'description', 'startDate', 'startTime', 'endDate', 'endTime', 'photo', 'location', 'pinned', 'responsible', 'collaboration'];
@@ -140,6 +140,7 @@ export class ManageEventComponent implements OnInit {
 
   removeSchedule(id) {
     this.eventService.deleteSchedule(id, this.currentEvent.manualId).subscribe();
+    // this.onSubmitPost(this.currentEvent.status);
   }
 
   onEnter() {
@@ -150,6 +151,7 @@ export class ManageEventComponent implements OnInit {
       } as EventSchedule
       this.eventService.addSchedule(newSchedule, this.currentEvent.manualId).subscribe();
     }
+    // this.onSubmitPost(this.currentEvent.status);
   }
 
   openRoomDialog() {

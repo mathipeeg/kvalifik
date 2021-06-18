@@ -1,58 +1,75 @@
-<div class="post-container" *ngIf="currentPost">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{currentPost.title}}</mat-card-title>
-    <mat-card-subtitle>{{currentPost.createdDate | date: 'dd/MM/yyyy'}}</mat-card-subtitle>
-    <br><p>{{currentPost.likes}}</p>
-  </mat-card-header> <!--{{currentPost.media}}-->
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <div>{{currentPost.text}}</div>
-    <hr>
-    <div *ngIf="collaboration">
-      <mat-label>Collaboration</mat-label>
-      <p>{{collaboration.title}}<p>
-    </div>
-    <hr>
-    <div *ngIf="collections.length > 0">
-      <mat-label>Collection(s)</mat-label>
-      <div *ngFor="let coll of collections">
-        <p>{{coll.title}}<p>
-      </div>
-    </div>
-    <hr>
-    <div *ngIf="volunteers.length > 0">
-      <mat-label>Responsible</mat-label>
-      <div *ngFor="let volunteer of volunteers">
-        <p>{{volunteer.firstName}} {{volunteer.lastName}}<p>
-      </div>
-    </div>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-stroked-button color="primary" (click)="likePost(currentPost)" class="e2e-like">Like</button>
-    <button mat-stroked-button color="primary" (click)="editPost(currentPost.id)" class="e2e-edit">Edit</button>
-  </mat-card-actions>
-
-  <button *ngIf="currentUser" mat-raised-button (click)="addComment()">Add comment</button>
-  <div #commentText style="display: none">
-    <textarea #commentInput placeholder="This post deserves some love...." (keypress)="testChange($event, commentInput.value)"></textarea>
-    <p>Send on Enter</p>
-  </div>
-  <div class="comment-card" *ngIf="comments">
+<div class="container">
+  <div class="post-container" *ngIf="currentPost">
     <mat-card-header>
-      <mat-card-subtitle>Comments</mat-card-subtitle>
+      <div class="top-div">
+        <div class="title-date">
+          <mat-card-title>{{currentPost.title}}</mat-card-title>
+          <div class="date-likes">
+            <mat-card-subtitle>{{currentPost.createdDate | date: 'dd/MM/yyyy'}}</mat-card-subtitle>
+            <div class="likes"><span class="material-icons-outlined" (click)="likePost(currentPost)">thumb_up</span> {{currentPost.likes}}</div>
+          </div>
+        </div>
+      </div>
     </mat-card-header>
+    <div class="img-div"><img mat-card-image src="{{currentPost.media}}" alt="Photo of a Shiba Inu"></div>
     <mat-card-content>
-      <div *ngFor="let comment of comments">
-<!--        <p>{{comment.author.profilePhoto}}<p>-->
-        <p>{{comment.author.name}}<p>
-        <p>{{comment.text}}</p>
-        <p>{{comment.createdDate | date}}</p>
-        <p>{{comment.likes}}</p>
-        <hr>
-        <button mat-stroked-button (click)="likeComment(comment)">Like</button>
-        <button *ngIf="currentUser && currentUser.email.split('@')[0] === comment.author.name" mat-stroked-button (click)="deleteComment(comment)">Delete</button>
+      <div class="text-div">{{currentPost.text}}</div>
+      <div class="collab-div" *ngIf="collaboration">
+        <mat-label>Collaboration</mat-label>
+        <p>{{collaboration.title}}<p>
+      </div>
+      <div class="collection-div" *ngIf="collections.length > 0">
+        <mat-label>Collection(s)</mat-label>
+        <div *ngFor="let coll of collections">
+          <p>{{coll.title}}<p>
+        </div>
+      </div>
+      <div class="responsible-div" *ngIf="volunteers.length > 0">
+        <mat-label>Responsible</mat-label>
+        <div *ngFor="let volunteer of volunteers">
+          <p>{{volunteer.firstName}} {{volunteer.lastName}}<p>
+        </div>
       </div>
     </mat-card-content>
+    <mat-card-actions>
+      <button mat-stroked-button color="primary" (click)="editPost(currentPost.id)" class="edit-btn">Edit</button>
+    </mat-card-actions>
+
+    <button class="add-comment-btn" *ngIf="currentUser" mat-raised-button (click)="addComment()">Add comment</button>
+    <div #commentText class="add-comment" style="display: none">
+      <mat-form-field>
+        <textarea cols="5" rows="5" matInput #commentInput placeholder="Add your comment" (keypress)="testChange($event, commentInput.value)"></textarea>
+      </mat-form-field>
+      <p>Send on Enter</p>
+    </div>
+
+    <div class="comment-card" *ngIf="comments">
+      <mat-card-header>
+        <mat-card-subtitle>Comments</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="comment-div" *ngFor="let comment of comments">
+          <div class="top-comment-div">
+            <div class="mid-div">
+              <div class="comment-img-div">
+                <img alt="pp" src="{{comment.author.profilePhoto}}">
+              </div>
+              <p>{{comment.author.name}}<p>
+            </div>
+            <div>
+              <div class="delete-comment-div" *ngIf="currentUser && currentUser.email.split('@')[0] === comment.author.name || currentUser.username === comment.author.name" (click)="deleteComment(comment)"><span class="material-icons-outlined delete-comment">delete</span></div>
+            </div>
+            </div>
+          <p class="text">{{comment.text}}</p>
+          <div class="bottom-comment-div">
+            <p>{{comment.createdDate | date}}</p>
+            <p class="comment-likes"><span class="material-icons-outlined" (click)="likeComment(comment)">thumb_up</span>{{comment.likes}}</p>
+          </div>
+<!--          <button mat-stroked-button (click)="likeComment(comment)">Like</button>-->
+<!--          <button *ngIf="currentUser && currentUser.email.split('@')[0] === comment.author.name" mat-stroked-button (click)="deleteComment(comment)">Delete</button>-->
+          <hr>
+        </div>
+      </mat-card-content>
+    </div>
   </div>
 </div>

@@ -8,15 +8,15 @@
       <mat-form-field>
         <div class="field-div">
           <mat-label>Title</mat-label>
-          <input *ngIf="editMode" matInput type="text" [placeholder]="selectedPost.title" formControlName="title">
-          <input *ngIf="!editMode" matInput type="text" placeholder="Title" formControlName="title">
+          <input id="e2e-title-edit" *ngIf="editMode" matInput type="text" [placeholder]="selectedPost.title" formControlName="title">
+          <input id="e2e-title" *ngIf="!editMode" matInput type="text" placeholder="Title" formControlName="title">
         </div>
       </mat-form-field>
 
       <div class="field-div">
         <mat-label>Text</mat-label>
         <textarea *ngIf="editMode" [placeholder]="selectedPost.text" formControlName="text"></textarea>
-        <textarea *ngIf="!editMode" [placeholder]="'Write your post'" formControlName="text"></textarea>
+        <textarea id="e2e-text" *ngIf="!editMode" [placeholder]="'Write your post'" formControlName="text"></textarea>
       </div>
 
       <div class="field-div">
@@ -25,7 +25,7 @@
           <br>
           <span>You can add one media type to your post. If you want to change the media type, you need to delete the added media first.</span>
     <!--      <button formControlName="media" mat-raised-button id="mediaInput">Add new media</button>-->
-          <input matInput type="text" id="mediaInput" placeholder="Media" formControlName="media">
+          <input matInput type="text" id="e2e-media" placeholder="Media" formControlName="media">
         </mat-form-field>
       </div>
 

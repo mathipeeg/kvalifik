@@ -120,3 +120,20 @@ export class User {
   about: string;
   contactPerson: string;
 }
+
+export class Message {
+  id;
+  date: Date;
+  from: string;
+  text: string;
+  to: string;
+}
+
+export class MessageUser {
+  from: string;
+  to: string;
+  fromProfilePic: string;
+  toProfilePic: string;
+  text: string;
+  date: Date;
+}

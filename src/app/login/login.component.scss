@@ -1,9 +1,10 @@
+@import'../../styles.scss';
+
 .example-card {
   max-width: 400px;
 }
 
 mat-card-actions mat-card-subtitle {
-    margin-top: 20px;
     margin-left: 20px;
 }
 
@@ -11,7 +12,27 @@ mat-card-actions mat-card-subtitle {
   width:  300px !important;
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+mat-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: $innerMargin;
+
+  mat-card-title {
+    margin: 0;
+    font-family: "Microsoft JhengHei";
+  }
+
+  .example-header-image {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
+
+#btnUserlogin {
+  margin-top: $innerMargin;
 }
