@@ -9,6 +9,14 @@ export class AppPage {
     await element(by.css('.e2e-posts')).click();
   }
 
+  async navigateToEvents() {
+    await element(by.css('.e2e-events')).click();
+  }
+
+  async navigateToProfile() {
+    await element(by.css('.e2e-profile')).click();
+  }
+
   async getDashboardText(): Promise<string> {
     return element(by.css('app-dashboard h1')).getText();
   }
@@ -20,20 +28,27 @@ export class AppPage {
   async getPostsButtonText(): Promise<string> {
     return element(by.css('.e2e-posts')).getText();
   }
-
   async clickNewPostButton() {
     await element(by.css('.new-post-btn')).click();
   }
 
-  async clickEditLatestPostButton() {
+  async clickNewEventButton() {
+    await element(by.css('.new-event-btn')).click();
+  }
+
+  async clickEditFirst() {
+    await element.all(by.css('.edit-button')).first().click();
+  }
+
+  async clickEditLatest() {
     await element.all(by.css('.edit-button')).last().click();
   }
 
-  async clickDeletePost() {
+  async clickDelete() {
     await element(by.id('delete-btn')).click();
   }
 
-  async clickAddComment() {
-    await element(by.css('.add-comment-btn')).click();
+  async clickSave() {
+    await element(by.id('savePost')).click();
   }
 }

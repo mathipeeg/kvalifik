@@ -13,11 +13,6 @@ describe('workspace-project App', () => {
     expect(await page.getDashboardText()).toEqual('Collaboration');
   });
 
-  // it('do something with router link button', async () => {
-  //   await page.navigateTo();
-  //   expect(await page.getButtonByRouterLink()).toEqual('x');
-  // });
-
 
   it('should display posts button', async () => {
     await page.navigateTo();

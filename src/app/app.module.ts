@@ -33,7 +33,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CollectionsComponent } from './collections/collections.component';
-import { VolunteersComponent } from './volunteers/volunteers.component';
+import {VolunteerInfoDialog, VolunteersComponent} from './volunteers/volunteers.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {DialogContentDialog, ManageCollectionComponent} from './manage-collection/manage-collection.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -66,7 +66,8 @@ import {MatMenuModule, MatMenuTrigger} from '@angular/material/menu';
     DialogContentDialog,
     ManageEventComponent,
     DialogRoom,
-    HeaderComponent
+    HeaderComponent,
+    VolunteerInfoDialog
   ],
   imports: [
     BrowserModule,

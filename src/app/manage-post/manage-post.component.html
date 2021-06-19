@@ -8,7 +8,7 @@
       <mat-form-field>
         <div class="field-div">
           <mat-label>Title</mat-label>
-          <input *ngIf="editMode" matInput type="text" [placeholder]="selectedPost.title" formControlName="title">
+          <input id="e2e-title-edit" *ngIf="editMode" matInput type="text" [placeholder]="selectedPost.title" formControlName="title">
           <input id="e2e-title" *ngIf="!editMode" matInput type="text" placeholder="Title" formControlName="title">
         </div>
       </mat-form-field>

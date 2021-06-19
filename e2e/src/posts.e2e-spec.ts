@@ -15,14 +15,14 @@ describe('Posts section', () => {
       await page.navigateToPosts();
       await browser.sleep(1000);
       await element(by.css('.edit-button')).click();
-      expect(await element.all(by.css('mat-label')).first().getText()).toEqual('Title');
+      expect(await element(by.css('.title')).getText()).toEqual('Edit Post');
     });
 
     it('Navigate to new post page', async() => {
       await page.navigateToPosts();
       await browser.sleep(1000);
       await element(by.css('.new-post-btn')).click();
-      expect(await element.all(by.css('mat-label')).first().getText()).toEqual('Title');
+      expect(await element(by.css('.title')).getText()).toEqual('Create Post');
     });
 
     it('Create new post', async() => { // todo: get to work with firefox as well. 1 and 2 hhm
@@ -42,13 +42,32 @@ describe('Posts section', () => {
       expect(postsAfterAdding).toEqual(postsBeforeAdding + 1);
     });
 
+    it('Edit post', async() => {
+      await page.navigateToPosts();
+      await browser.sleep(1000);
+      const amount: number = await (await element.all(by.css('.edit-button'))).length;
+      await page.clickEditLatest();
+      await browser.sleep(1000);
+      await element(by.id('e2e-title-edit')).sendKeys('e2e UPDATED TITLE');
+      await page.clickSave();
+      await browser.sleep(1000)
+      await page.navigateToPosts();
+      await browser.sleep(1000);
+      await page.clickEditLatest();
+      await browser.sleep(1000);
+      await element(by.id('e2e-title-edit')).click();
+      await browser.sleep(1000);
+      const title: string = await element(by.id('e2e-title-edit')).getAttribute('placeholder');
+      expect(title).toEqual('e2e UPDATED TITLE');
+    });
+
     it('Delete post', async() => {
       await page.navigateToPosts();
       await browser.sleep(1000);
       const postsBeforeAdding: number = await (await element.all(by.css('.edit-button'))).length;
-      await page.clickEditLatestPostButton();
+      await page.clickEditLatest();
       await browser.sleep(1000);
-      await page.clickDeletePost();
+      await page.clickDelete();
       await element(by.id('e2e-delete')).click();
       await page.navigateToPosts();
       await browser.sleep(1000);

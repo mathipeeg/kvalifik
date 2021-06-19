@@ -98,7 +98,7 @@ export class ManageEventComponent implements OnInit {
     this.location.back();
   }
 
-  onSubmitPost(state) {
+    onSubmitPost(state) {
     if (this.editMode) {
       console.log(this.currentEvent.startDate)
       const edits = ['title', 'description', 'startDate', 'startTime', 'endDate', 'endTime', 'photo', 'location', 'pinned', 'responsible', 'collaboration'];
