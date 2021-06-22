@@ -9,13 +9,8 @@ import {PostsService} from '../services/posts.service';
 import {EventService} from '../services/event.service';
 import {DialogContentExampleDialog} from '../manage-post/manage-post.component';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
-import {filter} from 'rxjs/operators';
-import {CollectionActions} from '../store/actions/CollectionActions';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 
 export interface DialogData {
   events: Event[];
@@ -67,7 +62,6 @@ export class ManageCollectionComponent implements OnInit {
 
         this.eventService.getEvents().subscribe(events => {
           for (const i in events) {
-            console.log(i)
             const tempEvent = events[i];
             tempEvent.id = i;
             this.contents.push(tempEvent);
@@ -84,7 +78,6 @@ export class ManageCollectionComponent implements OnInit {
                 this.currentContents.push(posts[i]);
               }
             }
-            console.log(this.currentContents);
           })
         })
       })
@@ -93,7 +86,9 @@ export class ManageCollectionComponent implements OnInit {
     if (!this.editMode) {
       this.eventService.getEvents().subscribe(events => {
         for (const i in events) {
-          this.contentEvents.push(events[i]);
+          const tempEvent = events[i];
+          tempEvent.id = i;
+          this.contentEvents.push(tempEvent);
         }
         this.postService.readPosts().subscribe(posts => {
           for (const i in posts) {
@@ -130,7 +125,8 @@ export class ManageCollectionComponent implements OnInit {
       }
       if (this.addedEvents) {
         for (const i of this.addedEvents) {
-          newColl.eventContent.push(i.title);
+          console.log(i)
+          newColl.eventContent.push(i.id);
         }
       }
       newColl.created = new Date();
@@ -187,6 +183,7 @@ export class ManageCollectionComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (content === 'events') {
+        console.log(result[0].id)
         this.addedEvents = result;
       } else {
         this.addedPosts = result;

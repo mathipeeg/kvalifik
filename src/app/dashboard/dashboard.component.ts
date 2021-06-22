@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CollaborationService} from '../services/collaboration.service';
 import {PostsService} from '../services/posts.service';
 import {Collaboration, CollabPost, Post, User} from '../models';
@@ -27,8 +27,7 @@ export class DashboardComponent implements OnInit {
               private userService: UsersService,
               private authService: AuthService,
               private dataSharingService: DataSharingService,
-              private router: Router,
-              private route: ActivatedRoute) { }
+              private router: Router) { }
 
   ngOnInit(): void {
     this.sleepExample().then(() => {
@@ -53,7 +52,7 @@ export class DashboardComponent implements OnInit {
                     if (tempCollabs[collabId].postId === postId || tempCollabs[collabId].postId === this.posts[postId].manualId) {
                       // console.log(this.currentUser)
                       if (tempCollabs[collabId].userId === this.userId || tempCollabs[collabId].userId === 'EFZGmRz'){
-                        console.log(tempCollabs[collabId].title);
+                        // console.log(tempCollabs[collabId].title);
                         const newColl = {
                           title: tempCollabs[collabId].title,
                           accepted: tempCollabs[collabId].accepted,
@@ -82,7 +81,7 @@ export class DashboardComponent implements OnInit {
         this.dataSharingService.isUserLoggedIn.subscribe( value => {
           if(value) {
             console.log('LOGGED IN BUT NOT REFRESHED');
-            console.log(this.idToken);
+            // console.log(this.idToken);
             // location.reload();
           }
         });
@@ -131,7 +130,9 @@ export class DashboardComponent implements OnInit {
       }
     } else {
       const eles = document.getElementsByClassName('hiddenAccepted');
-      for (let i = 0; i < eles.length; i++) {
+      const length = eles.length;
+
+      for (let i = 0; i < length; i++) {
         eles[i].className = str;
       }
     }
