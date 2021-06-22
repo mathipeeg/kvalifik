@@ -8,7 +8,7 @@
       <div class="field-div">
         <mat-form-field>
           <mat-label>Title</mat-label>
-            <input id="e2e-title-edit" *ngIf="editMode" matInput type="text" [placeholder]="currentEvent.title" formControlName="title">
+            <input id="e2e-title-edit" *ngIf="editMode" matInput type="text" [placeholder]="currentEvent.title" [value]="currentEvent.title" formControlName="title">
             <input id="e2e-title" *ngIf="!editMode" matInput type="text" placeholder="Title" formControlName="title">
         </mat-form-field>
       </div>
@@ -43,7 +43,7 @@
 
       <div class="field-div">
           <mat-label>Description</mat-label>
-          <textarea cols="30" rows="10" matInput *ngIf="editMode" [placeholder]="currentEvent.description" formControlName="description"></textarea>
+          <textarea cols="30" rows="10" matInput *ngIf="editMode" [placeholder]="currentEvent.description" [value]="currentEvent.description" formControlName="description"></textarea>
           <textarea cols="30" rows="10" matInput id="e2e-description" *ngIf="!editMode" [placeholder]="'Write your post'" formControlName="description"></textarea>
       </div>
 

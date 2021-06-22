@@ -119,6 +119,7 @@ export class ManageEventComponent implements OnInit {
     } else {
       this.currentEvent = this.eventForm.value;
       this.currentEvent.status = state;
+      this.currentEvent.manualId = base58(this.currentEvent.title.length + 'ID')
       this.eventService.addEvent(this.currentEvent).subscribe();
     }
     this.router.navigate(['events', {published: true}]);

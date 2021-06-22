@@ -64,15 +64,16 @@ export class ManageCollectionComponent implements OnInit {
     if (this.editMode) {
       this.collectionService.getCollectionById(this.currentId).subscribe(coll => {
         this.currentCollection = coll;
-        // console.log(this.currentCollection);
 
         this.eventService.getEvents().subscribe(events => {
           for (const i in events) {
-            this.contents.push(events[i]);
-            this.contentEvents.push(events[i]);
-            // i = id
+            console.log(i)
+            const tempEvent = events[i];
+            tempEvent.id = i;
+            this.contents.push(tempEvent);
+            this.contentEvents.push(tempEvent);
             if (this.currentCollection.eventContent.includes(i)) {
-              this.currentContents.push(events[i]);
+              this.currentContents.push(tempEvent);
             }
           }
           this.postService.readPosts().subscribe(posts => {
@@ -83,8 +84,7 @@ export class ManageCollectionComponent implements OnInit {
                 this.currentContents.push(posts[i]);
               }
             }
-            // console.log(this.currentContents);
-            // console.log(this.contents);
+            console.log(this.currentContents);
           })
         })
       })
@@ -137,7 +137,6 @@ export class ManageCollectionComponent implements OnInit {
       newColl.status = state;
       this.collectionService.createCollection(newColl).subscribe();
       this.router.navigate(['/collections', {published: true}]);
-
     } else {
       const edits = ['title', 'description', 'pinned'];
       for (const edit of edits) {
@@ -155,12 +154,13 @@ export class ManageCollectionComponent implements OnInit {
       }
       if(this.addedEvents) {
         for (const i of this.addedEvents) {
-          if (!this.currentCollection.eventContent.includes('sXUHvUSL')) {
-            this.currentCollection.eventContent.push('sXUHvUSL');
+          if (!this.currentCollection.eventContent.includes(i.id)) {
+            this.currentCollection.eventContent.push(i.id);
           }
         }
       }
-      this.currentCollection.id = 'Rf8emLgia1ThwNz';
+      console.log(this.currentId)
+      console.log(this.currentCollection.eventContent)
       this.collectionService.updateCollection(this.currentId, this.currentCollection).subscribe();
       this.router.navigate(['/collections', {published: false}]);
     }
@@ -224,9 +224,6 @@ export class DialogContentDialog implements OnInit{
               @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
   ngOnInit(): void {
-    // if (this.data.edit) {
-    //
-    // }
     if (this.data.choice === 'events') {
       this.initialData = this.data.events;
       this.dataSource.data = this.data.events;

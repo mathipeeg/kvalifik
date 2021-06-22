@@ -8,17 +8,15 @@
       <mat-form-field>
         <div class="field-div">
           <mat-label>Title</mat-label>
-          <input id="e2e-title-edit" *ngIf="editMode" matInput type="text" [placeholder]="selectedPost.title" formControlName="title">
+          <input id="e2e-title-edit" *ngIf="editMode" matInput type="text" [value]="selectedPost.title" [placeholder]="selectedPost.title" formControlName="title">
           <input id="e2e-title" *ngIf="!editMode" matInput type="text" placeholder="Title" formControlName="title">
         </div>
       </mat-form-field>
 
       <div class="field-div">
         <mat-label>Text</mat-label>
-        <mat-form-field>
-          <textarea cols="30" rows="10" matInput *ngIf="editMode" [placeholder]="selectedPost.text" formControlName="text"></textarea>
-          <textarea cols="30" rows="10" matInput id="e2e-text" *ngIf="!editMode" [placeholder]="'Write your post'" formControlName="text"></textarea>
-        </mat-form-field>
+        <textarea cols="30" rows="10" matInput *ngIf="editMode" [value]="selectedPost.text" [placeholder]="selectedPost.text" formControlName="text"></textarea>
+        <textarea cols="30" rows="10" matInput id="e2e-text" *ngIf="!editMode" [placeholder]="'Write your post'" formControlName="text"></textarea>
       </div>
 
       <div class="field-div">
