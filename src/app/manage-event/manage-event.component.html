@@ -42,11 +42,9 @@
       </div>
 
       <div class="field-div">
-<!--        <mat-form-field>-->
           <mat-label>Description</mat-label>
-          <textarea *ngIf="editMode" [placeholder]="currentEvent.description" formControlName="description"></textarea>
-          <textarea id="e2e-description" *ngIf="!editMode" [placeholder]="'Write your post'" formControlName="description"></textarea>
-<!--        </mat-form-field>-->
+          <textarea cols="30" rows="10" matInput *ngIf="editMode" [placeholder]="currentEvent.description" formControlName="description"></textarea>
+          <textarea cols="30" rows="10" matInput id="e2e-description" *ngIf="!editMode" [placeholder]="'Write your post'" formControlName="description"></textarea>
       </div>
 
       <div class="field-div">
@@ -56,13 +54,11 @@
           <div class="schedule-title">{{event.title}}</div>
           <div class="schedule-delete" (click)="removeSchedule(event.manualId)"><span class="material-icons-outlined">close</span></div>
         </div>
-        <div>
+        <div #scheduleDiv>
           <input #startTime class="schedule-start-input" placeholder="Start time"/>
           <input #title class="schedule-title-input" placeholder="Title" (keyup.enter)="onEnter()">
         </div>
       </div>
-
-<!--      eventschedule-->
 
       <div class="field-div">
         <mat-form-field>

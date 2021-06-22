@@ -8,7 +8,7 @@ export const posts = [];
 
 export const INITIAL_STATE: PostState = {posts};
 
-export function postsReducer(state: PostState = INITIAL_STATE, action) {
+export function postsReducer(state: PostState = INITIAL_STATE, action) { // Tager state, action og returnerer ny state
  switch (action.type) {
     case PostActions.READ_POSTS:
         return tassign(state, {posts: action.payload});

@@ -5,7 +5,7 @@ import { PostsService } from 'src/app/services/posts.service';
 import {Post} from '../../models';
 
 @Injectable({ providedIn: 'root'})
-export class PostActions {
+export class PostActions { // What to happen
 
   constructor(private ngRedux: NgRedux<AppState>, private postService: PostsService)
   {}
@@ -37,8 +37,6 @@ export class PostActions {
     console.log(newPost);
 
     this.postService.savePost(newPost).subscribe((result: any) => {
-      // console.log("result from saving");
-      // console.log(result);
 
       newPost.id = result.name;
 
@@ -54,6 +52,7 @@ export class PostActions {
         type: PostActions.UPDATE_POST,
         payload: updatedPost
     });
+
     this.postService.updatePost(updatedPost).subscribe(post => {
       console.log(post);
     })

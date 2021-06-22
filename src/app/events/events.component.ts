@@ -22,25 +22,36 @@ export class EventsComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.eventService.getEvents().subscribe(events => {
-      for (const i in events) {
-        const tempEvent = events[i];
-        tempEvent.manualId = i;
-        this.events.push(tempEvent);
-      }
-      let now: any = new Date()
-      now = Date.parse(now.toISOString());
-      for (const eventId in this.events) {
-        const eventDate = Date.parse(this.events[eventId].endDate.toString());
-        if (eventDate < now) {
-          this.pastEvents.push(this.events[eventId])
-        } else {
-          this.currentEvents.push(this.events[eventId])
+    this.sleepExample().then(() => {
+      this.eventService.getEvents().subscribe(events => {
+        console.log(events);
+        for (const i in events) {
+          const tempEvent = events[i];
+          tempEvent.manualId = i;
+          this.events.push(tempEvent);
         }
-      }
-      this.pastDataSource.data = this.pastEvents;
-      this.currentDataSource.data = this.currentEvents;
+        let now: any = new Date()
+        now = Date.parse(now.toISOString());
+        for (const eventId in this.events) {
+          const eventDate = Date.parse(this.events[eventId].endDate.toString());
+          if (eventDate < now) {
+            this.pastEvents.push(this.events[eventId])
+          } else {
+            this.currentEvents.push(this.events[eventId])
+          }
+        }
+        this.pastDataSource.data = this.pastEvents;
+        this.currentDataSource.data = this.currentEvents;
+      })
     })
+  }
+
+  private delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  private async sleepExample() {
+    await this.delay(500);
   }
 
   openEvent(id: string) {

@@ -41,6 +41,8 @@ export class AppState {
     volunteers?: VolunteerState;
     collabs?: CollaborationState;
 }
+
+// Store indeholder hele applikationens state. Listeners får besked om ændringer gennem Store
 export const rootReducer = combineReducers<AppState>({
     users: usersReducer,
     posts: postsReducer,

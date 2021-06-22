@@ -15,8 +15,10 @@
 
       <div class="field-div">
         <mat-label>Text</mat-label>
-        <textarea *ngIf="editMode" [placeholder]="selectedPost.text" formControlName="text"></textarea>
-        <textarea id="e2e-text" *ngIf="!editMode" [placeholder]="'Write your post'" formControlName="text"></textarea>
+        <mat-form-field>
+          <textarea cols="30" rows="10" matInput *ngIf="editMode" [placeholder]="selectedPost.text" formControlName="text"></textarea>
+          <textarea cols="30" rows="10" matInput id="e2e-text" *ngIf="!editMode" [placeholder]="'Write your post'" formControlName="text"></textarea>
+        </mat-form-field>
       </div>
 
       <div class="field-div">

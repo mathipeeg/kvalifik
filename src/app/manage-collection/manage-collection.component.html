@@ -15,8 +15,8 @@
 
       <div class="field-div">
         <mat-label>Description</mat-label>
-        <textarea *ngIf="editMode" [placeholder]="currentCollection.description" formControlName="description"></textarea>
-        <textarea *ngIf="!editMode" placeholder="Write a short description of the collection" formControlName="description"></textarea>
+        <textarea cols="30" rows="10" matInput *ngIf="editMode" [placeholder]="currentCollection.description" formControlName="description"></textarea>
+        <textarea cols="30" rows="10" matInput *ngIf="!editMode" placeholder="Write a short description of the collection" formControlName="description"></textarea>
       </div>
 
       <div class="field-div">

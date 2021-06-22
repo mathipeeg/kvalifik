@@ -24,6 +24,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class ManageEventComponent implements OnInit {
   @ViewChild('startTime') startTime: ElementRef | undefined;
   @ViewChild('title') title: ElementRef | undefined;
+  @ViewChild('scheduleDiv') scheduleDiv: ElementRef | undefined;
 
   currentId: string;
   currentEvent = {} as Event;
@@ -139,8 +140,8 @@ export class ManageEventComponent implements OnInit {
   }
 
   removeSchedule(id) {
+    console.log(id);
     this.eventService.deleteSchedule(id, this.currentEvent.manualId).subscribe();
-    // this.onSubmitPost(this.currentEvent.status);
   }
 
   onEnter() {
@@ -150,8 +151,8 @@ export class ManageEventComponent implements OnInit {
         title: this.title.nativeElement.value
       } as EventSchedule
       this.eventService.addSchedule(newSchedule, this.currentEvent.manualId).subscribe();
+      window.location.reload();
     }
-    // this.onSubmitPost(this.currentEvent.status);
   }
 
   openRoomDialog() {
@@ -161,6 +162,10 @@ export class ManageEventComponent implements OnInit {
       console.log(result);
       this.openSnackBar('Your request for a room has been sent!', 'x');
     });
+  }
+
+  cancelRoom() {
+    console.log('cancel');
   }
 
   openSnackBar(message: string, action: string) {
