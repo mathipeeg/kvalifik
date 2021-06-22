@@ -32,7 +32,7 @@ export class PostsComponent implements OnInit {
               private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.idToken = sessionStorage.getItem('safeToken');
+    this.idToken = sessionStorage.getItem('googleToken');
 
     const published: string = this.route.snapshot.paramMap.get('published');
     this.postActions.readPosts();
@@ -51,12 +51,11 @@ export class PostsComponent implements OnInit {
       }
       // console.log(this.posts);
     });
-    // this.tempData = this.tempDataService.getPosts();
   }
 
   editPost(id: any) {
     // console.log(id);
-    this.router.navigate(['/managepost', {myId: id}])
+    this.router.navigate(['/managepost', {postId: id}])
   }
 
   openPost(id: any) {

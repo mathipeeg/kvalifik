@@ -5,7 +5,7 @@ import {CommentActions} from '../actions/CommentActions';
 
 export const comments = [];
 
-const INITIAL_STATE: CommentState = {comments};
+export const INITIAL_STATE: CommentState = {comments};
 
 export function commentReducer(state: CommentState = INITIAL_STATE, action) {
  switch (action.type) {

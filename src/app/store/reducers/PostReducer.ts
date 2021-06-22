@@ -6,7 +6,7 @@ import {Post} from '../../models';
 const comments = [{id: '1', text: 'No'}, {id:'2', text: 'way'}];
 export const posts = [];
 
-const INITIAL_STATE: PostState = {posts};
+export const INITIAL_STATE: PostState = {posts};
 
 export function postsReducer(state: PostState = INITIAL_STATE, action) {
  switch (action.type) {

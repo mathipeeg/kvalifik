@@ -16,6 +16,7 @@ import {CollaborationActions} from '../store/actions/CollaborationActions';
 import {MatDialog} from '@angular/material/dialog';
 import {CollaborationService} from '../services/collaboration.service';
 import base58 from 'base58-encode';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-manage-post',
@@ -58,14 +59,23 @@ export class ManagePostComponent implements OnInit {
               private collabActions: CollaborationActions,
               private userService: UsersService,
               public dialog: MatDialog,
-              private collaborationService: CollaborationService) { }
+              private collaborationService: CollaborationService,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.idToken = sessionStorage.getItem('safeToken');
-
-    const id: string = this.route.snapshot.paramMap.get('myId');
-    // this.currentUser = this.userService.getUser;
-
+    this.idToken = sessionStorage.getItem('googleToken');
+    if(this.idToken) {
+      this.authService.getUserInfo(atob(JSON.parse(this.idToken))).subscribe(googleUser => {
+        const localId = googleUser['users'][0].localId;
+        this.userService.getUserByReferenceKey(localId).subscribe(user => {
+          for (const i in user) {
+            this.currentUser = user[i];
+          }
+          console.log(this.currentUser)
+        })
+      });
+    }
+    const id: string = this.route.snapshot.paramMap.get('postId');
 
     if (id) {
       this.headerTitle = 'Edit Post';
@@ -92,7 +102,7 @@ export class ManagePostComponent implements OnInit {
     if(this.editMode) {
       this.commentActions.readComments();
       this.ngRedux.select(state => state.comments).subscribe(res => { // holder øje med state af posts og får dem fra select()
-        this.comments = res.comments; // todo: do a query instead uwu
+        this.comments = res.comments; // todo: do a query instead
       });
     }
 
@@ -131,7 +141,6 @@ export class ManagePostComponent implements OnInit {
       this.collaborationService.saveCollaboration(tempCollab).subscribe();
 
     } else {
-      console.log(this.postForm);
       const edits = ['title', 'text', 'media', 'collections', 'pinned'];
       for (const edit of edits) {
         // console.log(this.postForm.value[edit]);

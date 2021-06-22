@@ -5,25 +5,20 @@ import { AuthService} from '../../services/auth.service';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../../models';
 import {Subject} from 'rxjs';
+import {UsersService} from '../../services/users.service';
 
 @Injectable({ providedIn: 'root'})
 export class UserActions {
 
-    constructor(private ngRedux: NgRedux<AppState>, private authService: AuthService,
-                )
+    constructor(private ngRedux: NgRedux<AppState>,
+                private authService: AuthService,
+                private userService: UsersService)
     {}
 
   static SIGNED_UP: string = 'SIGNED_UP';
+  static LOGGED_IN_GOOGLE: string = 'LOGGED_IN_GOOGLE';
   static LOGGED_IN: string = 'LOGGED_IN';
-  static SAVE_SOMETHING: string = 'SAVE_SOMETHING';
   currentUser: User;
-
-
-  // saveSomething(something: string) {
-  //   this.authService.saveSomething(something).subscribe((res: any) => {
-  //     console.log(res);
-  //   });
-  // }
 
   login(username: string, password: string) {
       this.authService.login(username, password).subscribe((result: any) => {
@@ -37,8 +32,8 @@ export class UserActions {
           } as User;
           this.currentUser = user;
 
-          const googleToken = btoa(result.idToken);
-          sessionStorage.setItem('googleToken', JSON.stringify(googleToken));
+          const googleToken = btoa(result.idToken); // encrypter googleToken
+          sessionStorage.setItem('googleToken', JSON.stringify(googleToken)); // gemmer google token i storage :)
 
           this.authService.getUserInfo(result.idToken).subscribe((response: any) => {
             user.signupDate = new Date(Number(response.users[0].createdAt));
@@ -48,7 +43,6 @@ export class UserActions {
               payload: {user, token: result.idToken}
             });
           });
-          // this.logged = true;
         }
       });
   }

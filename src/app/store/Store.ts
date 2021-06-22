@@ -32,9 +32,6 @@ export class UserState {
     loggedInUser: User;
     token: string;
 }
-// export class EventState {
-//     events: Event[];
-// }
 
 export class AppState {
     posts?: PostState;
@@ -43,7 +40,6 @@ export class AppState {
     comments?: CommentState;
     volunteers?: VolunteerState;
     collabs?: CollaborationState;
-    // events?: EventState;
 }
 export const rootReducer = combineReducers<AppState>({
     users: usersReducer,
@@ -52,6 +48,4 @@ export const rootReducer = combineReducers<AppState>({
     comments: commentReducer,
     volunteers: volunteerReducer,
     collabs: collaborationReducer
-  // events: eventsReducer,
-    // router: routerReducer
 });

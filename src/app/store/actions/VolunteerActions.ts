@@ -19,7 +19,7 @@ export class VolunteerActions {
   static UPDATE_VOLUNTEER: string = 'UPDATE_VOLUNTEER';
   static READ_VOLUNTEER: string = 'READ_VOLUNTEER';
 
-  readVolunteers(): void {
+  readVolunteers(): void { // is used in post component
     this.volunteerService.readVolunteers().subscribe((result: any) => {
 
       const volunteers: Volunteer[] = [];

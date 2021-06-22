@@ -91,7 +91,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Responsible</mat-label>
           <mat-select formControlName="responsible" multiple>
-            <mat-option *ngFor="let volunteer of volunteers" [value]="volunteer.id" >{{volunteer.firstName}} {{volunteer.lastName}}</mat-option>
+            <mat-option *ngFor="let volunteer of volunteers" [value]="volunteer.firstName + volunteer.lastName" >{{volunteer.firstName}} {{volunteer.lastName}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -99,7 +99,7 @@
       <div class="field-div">
         <mat-label>Collaboration</mat-label>
         <mat-select formControlName="collaboration">
-          <mat-option *ngFor="let collab of collaborations" [value]="collab.id">
+          <mat-option *ngFor="let collab of collaborations" [value]="collab.title">
             {{collab.title}}
           </mat-option>
         </mat-select>

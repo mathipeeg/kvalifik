@@ -19,18 +19,12 @@ export class PostActions {
     this.postService.readPosts().subscribe((result: any) => {
 
       const posts: Post[] = [];
-      // console.log(result);
       for (const id in result) {
-        // console.log(id);
-        // if (id === 'id') {
         let postObj = {} as Post;
-        // console.log(result[id]);
         postObj = result[id];
         postObj.id = id;
         posts.push(postObj as Post);
-        // }
       }
-      // console.log(posts);
 
       this.ngRedux.dispatch({
         type: PostActions.READ_POSTS,

@@ -38,11 +38,10 @@ describe('Events section', () => {
       await element(by.id('e2e-start-time')).sendKeys('10.00');
       await element(by.id('e2e-end-date')).sendKeys('2021-06-20T17:54:36.066Z');
       await element(by.id('e2e-end-time')).sendKeys('12.00');
-      await element(by.id('e2e-description')).sendKeys('HY THSIHAISDHJFKSAHFJKASD');
+      await element(by.id('e2e-description')).sendKeys('Test e2e description');
       await element(by.id('e2e-photo')).sendKeys('Empty photo url');
       await element(by.id('e2e-location')).sendKeys('e2e Location test');
       await element(by.id('savePost')).click();
-      // await browser.get('events');
       await page.navigateToEvents();
       await browser.refresh();
       await browser.sleep(1000);
@@ -54,14 +53,14 @@ describe('Events section', () => {
       await page.navigateToEvents();
       await browser.sleep(1000);
       const amount: number = await (await element.all(by.css('.edit-button'))).length;
-      await element.all(by.css('.edit-button')).get(amount - 3).click();
+      await element.all(by.css('.edit-button')).get(amount - 1).click();
       await browser.sleep(1000);
       await element(by.id('e2e-title-edit')).sendKeys('e2e UPDATED TITLE');
       await page.clickSave();
       await browser.sleep(1000)
       await page.navigateToEvents();
       await browser.sleep(1000);
-      await element.all(by.css('.edit-button')).get(amount - 3).click();
+      await element.all(by.css('.edit-button')).get(amount - 1).click();
       await browser.sleep(1000);
       await element(by.id('e2e-title-edit')).click();
       await browser.sleep(1000);
@@ -72,8 +71,8 @@ describe('Events section', () => {
     it('Delete event', async() => {
       await page.navigateToEvents();
       await browser.sleep(1000);
-      const eventsBeforeAdding: number = await (await element.all(by.css('.edit-button'))).length;
-      await element.all(by.css('.edit-button')).get(eventsBeforeAdding - 3).click();
+      const amount: number = await (await element.all(by.css('.edit-button'))).length;
+      await element.all(by.css('.edit-button')).get(amount - 1).click();
       await browser.sleep(1000);
       await page.clickDelete();
       await element(by.id('e2e-delete')).click();
@@ -83,6 +82,6 @@ describe('Events section', () => {
       await browser.refresh();
       await browser.sleep(1000);
       const eventsAfterAdding: number = await (await element.all(by.css('.edit-button'))).length;
-      expect(eventsAfterAdding).toEqual(eventsBeforeAdding - 1);
+      expect(eventsAfterAdding).toEqual(amount - 1);
     });
 })

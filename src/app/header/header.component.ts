@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.idToken = sessionStorage.getItem('googleToken');
-    if (this.idToken) {
+    if (this.idToken.length > 1) {
       this.authService.getUserInfo(atob(JSON.parse(this.idToken))).subscribe(googleUser => {
         const localId = googleUser['users'][0].localId;
         this.userService.getUserByReferenceKey(localId).subscribe(user => {
@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit {
     this.dataSharingService.isUserLoggedIn.next(false);
     this.dataSharingService.title.next('');
     sessionStorage.setItem('googleToken', '');
-    this.router.navigate(['']);
+    this.router.navigate(['/']);
   }
 
   login() {
